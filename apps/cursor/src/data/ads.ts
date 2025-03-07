@@ -28,4 +28,11 @@ export const ads: Ad[] = [
     imageUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-languine.png",
     link: "https://go.midday.ai/NnI1CUO",
    },
+   {
+    title: "our cto when MCP is not MCPin’!!!!",
+    description: "just one more mcp bro. I promise bro just one more mcp to agi and it'll fix everything bro. bro. just one more.",
+    logoUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-composio-logo.png",
+    imageUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-composio.jpg",
+    link: "https://dub.sh/yFjYSKz",
+   },
 ]; 
