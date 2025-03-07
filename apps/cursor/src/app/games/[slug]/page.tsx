@@ -1,11 +1,7 @@
 import { getGameBySlug, getGames } from "@/data/games";
 import { notFound } from "next/navigation";
 
-interface GamePageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {
   return getGames().map((game) => ({
@@ -13,8 +9,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: GamePageProps) {
-  const { slug } = params;
+export async function generateMetadata({ params }: { params: Params }) {
+  const { slug } = await params;
   const game = getGameBySlug(slug);
 
   if (!game) {
@@ -29,8 +25,8 @@ export async function generateMetadata({ params }: GamePageProps) {
   };
 }
 
-export default async function GamePage({ params }: GamePageProps) {
-  const { slug } = params;
+export default async function GamePage({ params }: { params: Params }) {
+  const { slug } = await params;
   const game = getGameBySlug(slug);
 
   if (!game) {
