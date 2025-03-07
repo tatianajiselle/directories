@@ -198,4 +198,9 @@ export default [
     description: "A Model Context Protocol (MCP) server that enables AI assistants like Claude to interact with your Google Cloud Platform environment. This allows for natural language querying and management of your GCP resources during conversations.",
     logo: "https://cdn.brandfetch.io/cloud.withgoogle.com/w/400/h/400?c=1idpNUcW3WQIRQBKP82"
   },
+  {
+    name: "Inbox Zero",
+    url: "https://github.com/elie222/inbox-zero",
+    description: "A Model Context Protocol (MCP) server that enables AI assistants like Claude to interact with your Inbox Zero account. This allows for natural language querying and management of your email during conversations."
+  },
 ];
