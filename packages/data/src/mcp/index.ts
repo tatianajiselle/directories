@@ -23,6 +23,12 @@ export default [
     logo: "https://cdn.brandfetch.io/idZAyF9rlg/theme/light/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B"
   },
   {
+    "name": "Resend",
+    "url": "https://github.com/resend/mcp-send-email",
+    "description": "This is a simple MCP server that sends emails using Resend's API. Why? Now you can let Cursor or Claude Desktop compose emails for you and send it right away without having to copy and paste the email content.",
+    "logo": "https://pbs.twimg.com/profile_images/1749861436074151936/MPN32ysD_400x400.jpg"
+  },
+  {
     name: "PostgreSQL",
     url: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
     description: "A Model Context Protocol server that provides read-only access to PostgreSQL databases. This server enables LLMs to inspect database schemas and execute read-only queries.",
