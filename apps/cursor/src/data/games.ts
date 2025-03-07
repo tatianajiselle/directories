@@ -14,6 +14,17 @@ export const games = [
   },
   {
     id: 2,
+    name: "Flight Simulator",
+    link: "https://flyhi.netlify.app",
+    screenshot: "https://pbs.twimg.com/ext_tw_video_thumb/1898013926937575427/pu/img/BUD0F3sl0F750YRb.jpg",
+    description: "A cybertruck simulation game built with ThreeJS",
+    author: {
+      name: "Melvin Vivas",
+      image: "https://pbs.twimg.com/profile_images/1833137601207009280/gGSDe5DF_400x400.jpg",
+    },
+  },
+  {
+    id: 3,
     name: "Vibe Sail",
     link: "https://vibesail.com/",
     screenshot: "https://pbs.twimg.com/media/GlKvyNbXMAA2Hk3?format=jpg&name=medium",
@@ -24,7 +35,7 @@ export const games = [
     },
   },
   {
-    id: 3,
+    id: 4,
     name: "Island Adventure",
     link: "https://ja.sperdeboer.nl/island",
     screenshot: "https://pbs.twimg.com/media/GlUQ07aXoAAQn36?format=jpg&name=large",
@@ -35,7 +46,7 @@ export const games = [
     },
   },
   {
-    id: 4,
+    id: 5,
     name: "Cybertruck",
     link: "https://cybertrucksim.com",
     external: true,
@@ -47,7 +58,7 @@ export const games = [
     },
   },
   {
-    id: 5,
+    id: 6,
     name: "Builder",
     link: "http://regame.io",
     screenshot: "https://pbs.twimg.com/media/GlWm50YXMAA5nbZ?format=jpg&name=4096x4096",
@@ -58,7 +69,7 @@ export const games = [
     },
   },
   {
-    id: 6,
+    id: 7,
     name: "Battle Tank",
     link: "https://tank.cemilsevim.com",
     screenshot: "https://pbs.twimg.com/amplify_video_thumb/1896382237240631296/img/9__Tti9xabPuiwny.jpg",
@@ -69,7 +80,7 @@ export const games = [
     },
   },
   {
-    id: 7,
+    id: 8,
     name: "Car vs Monsters",
     link: "https://3d-racer.netlify.app",
     screenshot: "https://pbs.twimg.com/media/GkycsY8XkAAqXKW?format=jpg&name=medium",
@@ -80,7 +91,7 @@ export const games = [
     },
   },
   {
-    id: 8,
+    id: 9,
     name: "Flappy Bird",
     link: "https://flappi-bird.vercel.app",
     screenshot: "https://pbs.twimg.com/ext_tw_video_thumb/1897909487127695360/pu/img/_2n1bPTIhzCO1Icl.jpg",
@@ -91,7 +102,7 @@ export const games = [
     },
   },
   {
-    id: 9,
+    id: 10,
     name: "Space Defenders",
     link: "https://jasonleow.com/space-defenders",
     screenshot: "https://pbs.twimg.com/media/GlbOb5iaMAAMzgz?format=png&name=900x900",
