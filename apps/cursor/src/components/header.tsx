@@ -14,6 +14,7 @@ const navigationLinks = [
   { href: "/rules", label: "Rules" },
   { href: "/mcp", label: "MCPs" },
   { href: "/generate", label: "Generate" },
+  { href: "/games", label: "Games" },
   { href: "/learn", label: "Learn" },
   { href: "/advertise", label: "Advertise" },
   { href: "/about", label: "About" },
