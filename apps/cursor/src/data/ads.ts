@@ -35,4 +35,11 @@ export const ads: Ad[] = [
     imageUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-composio.jpg",
     link: "https://dub.sh/yFjYSKz",
    },
+   {
+    title: "Taska for GitHub & GitLab Issues",
+    description: "Taska is a beautifully designed Mac app for quickly creating and editing issues.",
+    logoUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-taska-logo.png",
+    imageUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-taska.png",
+    link: "https://dub.sh/8nBbSLT",
+   },
 ]; 
