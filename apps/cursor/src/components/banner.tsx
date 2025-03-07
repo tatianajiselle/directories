@@ -133,6 +133,20 @@ export function Banner() {
       description:
         "Translate your application with AI. Fast, accurate, and easy to integrate. ↗",
     },
+    {
+      href: "https://dub.sh/DwzRg5D",
+      logo: (
+        <img
+          src="https://pbs.twimg.com/profile_images/1892599077042319360/XurHmwNP_400x400.jpg"
+          alt="Composio"
+          className="absolute left-4 top-5"
+          width={32}
+          height={32}
+        />
+      ),
+      title: "Comp AI",
+      description: "Open Source Compliance Automation Platform. ↗",
+    },
   ];
 
   useEffect(() => {
