@@ -145,7 +145,7 @@ export function Banner() {
         />
       ),
       title: "Comp AI",
-      description: "Open Source Compliance Automation Platform. ↗",
+      description: "Open Source - Get SOC 2, ISO 27001 & GDPR compliant. ↗",
     },
   ];
 
