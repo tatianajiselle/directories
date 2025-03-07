@@ -17,7 +17,7 @@ export const games = [
     name: "Flight Simulator",
     link: "https://flyhi.netlify.app",
     screenshot: "https://pbs.twimg.com/ext_tw_video_thumb/1898013926937575427/pu/img/BUD0F3sl0F750YRb.jpg",
-    description: "A cybertruck simulation game built with ThreeJS",
+    description: "A flight simulator game built with ThreeJS",
     author: {
       name: "Melvin Vivas",
       image: "https://pbs.twimg.com/profile_images/1833137601207009280/gGSDe5DF_400x400.jpg",

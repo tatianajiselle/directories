@@ -20,20 +20,31 @@ export function RuleList({
 }) {
   const [search] = useQueryState("q");
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
-  const [randomAds, setRandomAds] = useState<(typeof ads)[0][]>([]);
+  const [randomAds, setRandomAds] = useState<Record<string, (typeof ads)[0]>>(
+    {},
+  );
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Set mounted state
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Generate random ads after component mounts on client
   useEffect(() => {
-    const totalPossibleAds = Math.ceil(
-      sections.reduce((sum, section) => sum + section.rules.length, 0) / 9,
-    );
-
-    setRandomAds(
-      Array.from({ length: totalPossibleAds }, () => {
-        const randomIndex = Math.floor(Math.random() * ads.length);
-        return ads[randomIndex];
-      }),
-    );
+    const newRandomAds: Record<string, (typeof ads)[0]> = {};
+    sections.forEach((section, sectionIndex) => {
+      section.rules.forEach((_, ruleIndex) => {
+        const position = `${sectionIndex}-${ruleIndex}`;
+        if (!randomAds[position]) {
+          const randomIndex = Math.floor(Math.random() * ads.length);
+          newRandomAds[position] = ads[randomIndex];
+        } else {
+          newRandomAds[position] = randomAds[position];
+        }
+      });
+    });
+    setRandomAds(newRandomAds);
   }, [sections]);
 
   // Reset visible items when search changes
@@ -70,8 +81,9 @@ export function RuleList({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const getRandomAd = (index: number) => {
-    return randomAds[index] || ads[0]; // Fallback to first ad if index not yet available
+  const getRandomAd = (sectionIndex: number, ruleIndex: number) => {
+    const position = `${sectionIndex}-${ruleIndex}`;
+    return randomAds[position] || ads[0];
   };
 
   let totalItemsCount = 0;
@@ -88,22 +100,25 @@ export function RuleList({
           >
             {section.rules.map((rule, idx2) => {
               totalItemsCount++;
-              const shouldShowAd = totalItemsCount % 9 === 0;
-              const adIndex = Math.floor(totalItemsCount / 9) - 1;
+              const shouldShowAd =
+                totalItemsCount % 9 === 2 ||
+                (totalItemsCount > 2 && (totalItemsCount - 2) % 9 === 0);
 
               return (
                 <Fragment key={`${idx}-${idx2.toString()}`}>
                   {small ? (
                     <>
                       <RuleCardSmall rule={rule} small />
-                      {shouldShowAd && (
-                        <AdCardSmall ad={getRandomAd(adIndex)} small />
+                      {isMounted && shouldShowAd && (
+                        <AdCardSmall ad={getRandomAd(idx, idx2)} small />
                       )}
                     </>
                   ) : (
                     <>
                       <RuleCard key={`${idx}-${idx2.toString()}`} rule={rule} />
-                      {shouldShowAd && <AdCard ad={getRandomAd(adIndex)} />}
+                      {isMounted && shouldShowAd && (
+                        <AdCard ad={getRandomAd(idx, idx2)} />
+                      )}
                     </>
                   )}
                 </Fragment>

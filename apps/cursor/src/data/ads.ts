@@ -8,6 +8,13 @@ export interface Ad {
 
 export const ads: Ad[] = [
   {
+    title: "Novu",
+    description: "The open-source notification Inbox platform for React",
+    logoUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-novu-logo.png",
+    link: "https://dub.sh/nmIKfit",
+    imageUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-novu.png",
+  },
+  {
     title: "Midday",
     description: "Invoicing, Time tracking, File reconciliation, Storage, Financial Overview & your own Assistant",
     logoUrl: "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-midday-logo.png",
