@@ -1,4 +1,12 @@
 export const videos = [{
+    "title": "WTF is MCP? Build an MCP server with Windsurf and Mintlify in 30 seconds",
+    "description": "Learn what MCP is and how to create your own one quickly using Windsurf and Mintlify MCP CLI",
+    "url": "https://www.youtube.com/embed/H-zXNNpchlg",
+    "author": {
+      "name": "Elie Steinbock",
+      "image": "https://yt3.googleusercontent.com/bErjBPyFJCBYxgfuG4qi_I_0TKWmmw50A2NoMyhxaLch-lzMQlpfSLRpsGg9xhnj5B2xp471=s160-c-k-c0x00ffffff-no-rj"
+    }
+  },{
     "title": "Is Windsurf Editor Better Than Cursor AI?",
     "description": "The Windsurf Editor combines agent and copilot functionalities for collaborative coding. It offers deep contextual awareness, multi-file editing, and utilizes Cascade for real-time codebase understanding and command execution.",
     "url": "https://www.youtube.com/embed/ENKR0_dE7Wc",
