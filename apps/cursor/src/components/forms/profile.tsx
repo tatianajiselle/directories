@@ -93,11 +93,11 @@ export function ProfileForm({ data }: { data: ProfileData }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: data?.name,
-      status: data?.status,
-      bio: data?.bio,
-      work: data?.work,
-      website: data?.website,
-      social_x_link: data?.social_x_link,
+      status: data?.status ?? "",
+      bio: data?.bio ?? "",
+      work: data?.work ?? "",
+      website: data?.website ?? "",
+      social_x_link: data?.social_x_link ?? "",
       is_public: data?.is_public ?? true,
       slug: data?.slug,
     },
@@ -109,13 +109,10 @@ export function ProfileForm({ data }: { data: ProfileData }) {
       status: data.status || null,
       bio: data.bio || null,
       work: data.work || null,
-      website: data.website === "" || !data.website ? null : data.website,
-      social_x_link:
-        data.social_x_link === "" || !data.social_x_link
-          ? null
-          : data.social_x_link,
+      website: data.website || null,
+      social_x_link: data.social_x_link || null,
       is_public: data.is_public,
-      slug: data.slug || null,
+      slug: data.slug,
     });
   };
 
