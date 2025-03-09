@@ -7,8 +7,7 @@ export const metadata: Metadata = {
   description: "Explore what the community is talking about",
 };
 
-// Force static rendering
-export const dynamic = "force-static";
+export const revalidate = 300; // 5 minutes
 
 export default async function Page() {
   const popularPosts = await getPopularPosts();
