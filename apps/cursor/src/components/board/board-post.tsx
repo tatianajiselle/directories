@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
+import Link from "next/link";
 import { BoardVotes } from "./board-votes";
 
 interface BoardPostProps {
@@ -14,6 +15,7 @@ interface BoardPostProps {
   user_avatar?: string;
   vote_count?: number;
   created_at?: string;
+  user_slug?: string;
   slug: string;
 }
 
@@ -28,12 +30,12 @@ export function BoardPost({
   vote_count = 0,
   url,
   created_at = "Just now",
-  slug,
+  user_slug,
 }: BoardPostProps) {
   return (
     <Card className="p-0 border-none bg-transparent">
       <CardHeader className="p-0 space-y-2">
-        <div className="flex items-center gap-2">
+        <Link href={`/u/${user_slug}`} className="flex items-center gap-2">
           <Avatar className="size-4 rounded-none">
             {user_avatar ? (
               <AvatarImage src={user_avatar} alt={user_name} />
@@ -54,7 +56,7 @@ export function BoardPost({
               })}
             </span>
           </div>
-        </div>
+        </Link>
         <div className="flex flex-row justify-between">
           <CardTitle className="text-md font-normal flex items-center gap-2">
             <span>
