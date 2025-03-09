@@ -2,27 +2,28 @@
 
 import { createClient } from "@/utils/supabase/client";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface Session {
   user?: {
     name?: string;
     email?: string;
     image?: string;
+    user_metadata?: {
+      avatar_url?: string;
+      full_name?: string;
+    };
   };
-}
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
 }
 
 export function UserMenu() {
@@ -50,13 +51,37 @@ export function UserMenu() {
       className="flex items-center gap-4"
     >
       {session ? (
-        <Button
-          variant="outline"
-          onClick={handleSignOut}
-          className="bg-white text-black h-8 rounded-full"
-        >
-          Sign Out
-        </Button>
+        <div className="flex items-center gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar className="size-6 rounded-none cursor-pointer">
+                <AvatarImage
+                  src={session.user?.user_metadata?.avatar_url}
+                  className="rounded-none"
+                />
+                <AvatarFallback>
+                  {session.user?.user_metadata?.full_name?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="w-32"
+              side="bottom"
+              sideOffset={8}
+            >
+              <DropdownMenuItem asChild>
+                <Link href="/profile">Profile</Link>
+              </DropdownMenuItem>
+              {/* <DropdownMenuItem asChild>
+                <Link href="/settings">Settings</Link>
+              </DropdownMenuItem> */}
+              <DropdownMenuItem onClick={handleSignOut}>
+                Sign out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       ) : (
         <Link href={`/login?next=${pathname}`}>
           <Button

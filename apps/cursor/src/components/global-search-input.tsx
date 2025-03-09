@@ -17,7 +17,7 @@ export function GlobalSearchInput() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto h-[60px] bg-[#121212] border border-[#2C2C2]">
+    <div className="w-full max-w-2xl mx-auto h-[60px] border border-[#2C2C2]">
       <form className="h-full w-full" onSubmit={handleSubmit}>
         <div className="relative h-full">
           <input

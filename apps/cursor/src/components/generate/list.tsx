@@ -83,7 +83,7 @@ export function GenerateList() {
               className="px-2 py-2 border border-border w-[180px] sm:w-[240px] h-full"
             >
               <div className="flex flex-col gap-1">
-                <span className="text-[#878787] text-[10px] sm:text-[11px] h-[55px] sm:h-[75px] overflow-hidden font-mono bg-[#121212] p-2 leading-4">
+                <span className="text-[#878787] text-[10px] sm:text-[11px] h-[55px] sm:h-[75px] overflow-hidden font-mono bg-card p-2 leading-4">
                   {item.description}
                 </span>
                 <span className="text-primary font-mono text-[10px] sm:text-[11px] truncate px-1 pt-2">

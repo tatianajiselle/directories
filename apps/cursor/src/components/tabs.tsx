@@ -30,8 +30,9 @@ export function Tabs() {
           <Button
             variant="ghost"
             className={cn(
-              "px-4 py-0 h-8 text-[#878787] bg-[#1D1D1D]",
-              selectedTab === tab.path && "bg-[#2C2C2C] text-white",
+              "px-4 py-0 h-8 text-[#878787] bg-[#F5F5F5] dark:text-[#878787] dark:bg-[#1D1D1D]",
+              selectedTab === tab.path &&
+                "bg-[#E5E5E5] text-black dark:bg-[#2C2C2C] dark:text-white",
             )}
           >
             {tab.name}

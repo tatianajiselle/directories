@@ -25,11 +25,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const SaveRuleSchema = z.object({
-  fileName: z.string().min(1, 'File name is required.'),
+  fileName: z.string().min(1, "File name is required."),
 });
 
 type SaveRuleFormData = z.infer<typeof SaveRuleSchema>;
@@ -44,6 +44,7 @@ export function SaveRuleButton({
   small?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [isSupported, setIsSupported] = useState(false);
   const form = useForm<SaveRuleFormData>({
     resolver: zodResolver(SaveRuleSchema),
     defaultValues: {
@@ -51,18 +52,17 @@ export function SaveRuleButton({
     },
   });
 
-  // Make sure we only render the save button in supported browsers.
-  if (!isFileSystemAccessSupported()) {
-    return;
-  }
+  useEffect(() => {
+    setIsSupported(isFileSystemAccessSupported());
+  }, []);
 
   async function onSubmit({ fileName }: SaveRuleFormData) {
     try {
-      const directoryHandle =  await window.showDirectoryPicker();
+      const directoryHandle = await window.showDirectoryPicker();
 
       const cursorDirectoryHandle = await directoryHandle.getDirectoryHandle(
         ".cursor",
-        { create: true }
+        { create: true },
       );
 
       const ruleDirectoryHandle =
@@ -72,7 +72,7 @@ export function SaveRuleButton({
 
       const fileHandle = await ruleDirectoryHandle.getFileHandle(
         `${fileName}.mdc`,
-        { create: true }
+        { create: true },
       );
 
       const writableStream = await fileHandle.createWritable();
@@ -86,12 +86,16 @@ export function SaveRuleButton({
       if (error instanceof Error && error.name === "AbortError") {
         toast.error("Folder selection was canceled.");
       } else {
-        console.error(error)
+        console.error(error);
         toast.error("Failed to save file.");
       }
     } finally {
       setOpen(false);
     }
+  }
+
+  if (!isSupported) {
+    return null;
   }
 
   return (
@@ -100,7 +104,7 @@ export function SaveRuleButton({
         <button
           className={cn(
             "text-xs bg-black text-white dark:bg-white dark:text-black rounded-full flex items-center justify-center",
-            small ? "p-1.5 size-7" : "p-2 size-9"
+            small ? "p-1.5 size-7" : "p-2 size-9",
           )}
           type="button"
         >
