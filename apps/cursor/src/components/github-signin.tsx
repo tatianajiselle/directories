@@ -5,10 +5,10 @@ import { GithubIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
-export function GithubSignin() {
+export function GithubSignin({ redirectTo }: { redirectTo?: string }) {
   const supabase = createClient();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/";
+  const next = searchParams.get("next") ?? redirectTo ?? "/";
 
   return (
     <Button

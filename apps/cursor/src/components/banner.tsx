@@ -213,7 +213,12 @@ export function Banner() {
   const currentBanner = banners[currentBannerIndex];
 
   // Hide banner on /generate page
-  if (pathname === "/generate" || pathname.includes("/games")) return null;
+  if (
+    pathname === "/generate" ||
+    pathname.includes("/games") ||
+    pathname.includes("/board")
+  )
+    return null;
 
   return (
     <a href={currentBanner.href} target="_blank" rel="noreferrer">

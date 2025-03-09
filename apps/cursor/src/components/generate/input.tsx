@@ -64,7 +64,6 @@ export function GenerateInput({
   useEffect(() => {
     const checkAuth = async () => {
       const session = await getSession();
-      console.log(session);
       setIsAuth(!!session);
     };
     checkAuth();
@@ -88,7 +87,7 @@ export function GenerateInput({
       )}
       <div
         className={cn(
-          "w-full max-w-2xl mx-auto h-[100px] bg-[#121212] border border-[#2C2C2]",
+          "w-full max-w-2xl mx-auto h-[100px] border border-[#2C2C2]",
           isAuth === false && "blur-sm",
         )}
       >

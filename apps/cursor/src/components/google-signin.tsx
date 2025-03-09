@@ -4,10 +4,10 @@ import { createClient } from "@/utils/supabase/client";
 import { useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
-export function GoogleSignin() {
+export function GoogleSignin({ redirectTo }: { redirectTo?: string }) {
   const supabase = createClient();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/";
+  const next = searchParams.get("next") ?? redirectTo ?? "/";
 
   return (
     <Button

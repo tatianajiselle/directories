@@ -139,7 +139,7 @@ export function RuleList({
             }
             className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground"
           >
-            Load more...
+            Loading more...
           </button>
         </div>
       )}

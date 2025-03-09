@@ -64,7 +64,7 @@ export const viewport = {
   maximumScale: 1,
   userScalable: false,
   themeColor: [
-    // { media: "(prefers-color-scheme: light)" },
+    { media: "(prefers-color-scheme: light)" },
     { media: "(prefers-color-scheme: dark)" },
   ],
 };
@@ -80,7 +80,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         `${GeistSans.variable} ${GeistMono.variable}`,
-        "whitespace-pre-line antialiased bg-background text-foreground !dark",
+        "whitespace-pre-line antialiased bg-background text-foreground",
       )}
     >
       <body>
