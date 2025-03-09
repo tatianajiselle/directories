@@ -18,8 +18,6 @@ export const createPostAction = authActionClient
     }),
   )
   .action(async ({ parsedInput: { title, content, url }, ctx: { userId } }) => {
-    console.log(title, content, url, userId);
-
     const { success } = await createPostRatelimit.limit(
       `create-post-${userId}`,
     );

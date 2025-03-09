@@ -64,7 +64,6 @@ export function GenerateInput({
   useEffect(() => {
     const checkAuth = async () => {
       const session = await getSession();
-      console.log(session);
       setIsAuth(!!session);
     };
     checkAuth();
