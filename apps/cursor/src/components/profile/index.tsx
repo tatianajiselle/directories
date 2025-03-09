@@ -40,6 +40,7 @@ export async function Profile({
         website={data?.website}
         social_x_link={data?.social_x_link}
         is_public={data?.public}
+        slug={data?.slug}
       />
 
       <ProfileContent

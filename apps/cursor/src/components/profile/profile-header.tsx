@@ -11,6 +11,7 @@ export function ProfileHeader({
   website,
   social_x_link,
   is_public,
+  slug,
 }: {
   image?: string;
   status?: string;
@@ -21,6 +22,7 @@ export function ProfileHeader({
   website?: string;
   social_x_link?: string;
   is_public?: boolean;
+  slug: string;
 }) {
   return (
     <div className="flex items-center gap-4">
@@ -48,6 +50,7 @@ export function ProfileHeader({
               website,
               social_x_link,
               is_public,
+              slug,
             }}
           />
         </div>

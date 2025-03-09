@@ -1,7 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import { authActionClient } from "./safe-action";
 
@@ -12,6 +12,7 @@ export const editProfileAction = authActionClient
   .schema(
     z.object({
       name: z.string(),
+      slug: z.string().nullable(),
       status: z.string().nullable(),
       bio: z.string().nullable(),
       work: z.string().nullable(),
@@ -24,6 +25,7 @@ export const editProfileAction = authActionClient
     async ({
       parsedInput: {
         name,
+        slug,
         status,
         bio,
         work,
@@ -40,19 +42,22 @@ export const editProfileAction = authActionClient
         .update({
           name,
           status,
+          slug: slug ?? undefined,
           bio,
           work,
           website,
           social_x_link,
           public: is_public,
         })
-        .eq("id", userId);
+        .eq("id", userId)
+        .select("id, slug")
+        .single();
 
       if (error) {
         throw new Error(error.message);
       }
 
-      revalidatePath(`/u/${userId}`);
+      redirect(`/u/${slug}`);
 
       return data;
     },

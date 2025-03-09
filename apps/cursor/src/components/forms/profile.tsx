@@ -45,20 +45,34 @@ const formSchema = z.object({
     .max(100, {
       message: "Work must be less than 100 characters.",
     })
-    .optional(),
+    .optional()
+    .nullable(),
   website: z
     .string()
-    .url({
-      message: "Please enter a valid website URL.",
-    })
-    .optional(),
+    .transform((val) => (val === "" ? null : val))
+    .pipe(
+      z
+        .string()
+        .url({
+          message: "Please enter a valid website URL.",
+        })
+        .nullable(),
+    ),
   social_x_link: z
     .string()
-    .url({
-      message: "Please enter a valid X URL.",
-    })
-    .optional(),
+    .transform((val) => (val === "" ? null : val))
+    .pipe(
+      z
+        .string()
+        .url({
+          message: "Please enter a valid X URL.",
+        })
+        .nullable(),
+    ),
   is_public: z.boolean().default(true),
+  slug: z.string().min(1, {
+    message: "Username is required.",
+  }),
 });
 
 type ProfileData = {
@@ -69,6 +83,7 @@ type ProfileData = {
   website?: string;
   social_x_link?: string;
   is_public?: boolean;
+  slug?: string;
 };
 
 export function ProfileForm({ data }: { data: ProfileData }) {
@@ -84,6 +99,7 @@ export function ProfileForm({ data }: { data: ProfileData }) {
       website: data?.website,
       social_x_link: data?.social_x_link,
       is_public: data?.is_public ?? true,
+      slug: data?.slug,
     },
   });
 
@@ -93,9 +109,13 @@ export function ProfileForm({ data }: { data: ProfileData }) {
       status: data.status || null,
       bio: data.bio || null,
       work: data.work || null,
-      website: data.website || null,
-      social_x_link: data.social_x_link || null,
+      website: data.website === "" || !data.website ? null : data.website,
+      social_x_link:
+        data.social_x_link === "" || !data.social_x_link
+          ? null
+          : data.social_x_link,
       is_public: data.is_public,
+      slug: data.slug || null,
     });
   };
 
@@ -113,6 +133,24 @@ export function ProfileForm({ data }: { data: ProfileData }) {
                   <FormControl>
                     <Input
                       placeholder="Your name"
+                      {...field}
+                      className="placeholder:text-[#878787] border-border"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="slug"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Your username"
                       {...field}
                       className="placeholder:text-[#878787] border-border"
                     />
@@ -168,6 +206,7 @@ export function ProfileForm({ data }: { data: ProfileData }) {
                     <Input
                       placeholder="Your current work"
                       {...field}
+                      value={field.value || ""}
                       className="placeholder:text-[#878787] border-border"
                     />
                   </FormControl>
@@ -187,6 +226,7 @@ export function ProfileForm({ data }: { data: ProfileData }) {
                       placeholder="https://your-website.com"
                       {...field}
                       type="url"
+                      value={field.value || ""}
                       className="placeholder:text-[#878787] border-border"
                     />
                   </FormControl>
@@ -206,6 +246,7 @@ export function ProfileForm({ data }: { data: ProfileData }) {
                       placeholder="https://x.com/your-profile"
                       {...field}
                       type="url"
+                      value={field.value || ""}
                       className="placeholder:text-[#878787] border-border"
                     />
                   </FormControl>
