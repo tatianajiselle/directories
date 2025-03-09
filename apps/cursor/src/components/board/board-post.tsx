@@ -99,7 +99,7 @@ export function BoardPost({
       </CardHeader>
 
       <CardContent className="p-0 mt-2 pr-24">
-        <p className="text-sm">{content}</p>
+        <p className="text-sm line-clamp-2">{content}</p>
       </CardContent>
     </Card>
   );
