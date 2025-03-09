@@ -25,7 +25,7 @@ export function GithubSignin({ redirectTo }: { redirectTo?: string }) {
     >
       <span className="flex items-center gap-2">
         <GithubIcon className="w-4 h-4" />
-        Sign in with Github
+        Sign in with GitHub
       </span>
     </Button>
   );
