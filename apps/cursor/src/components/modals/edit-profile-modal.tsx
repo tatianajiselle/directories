@@ -18,6 +18,7 @@ type ProfileData = {
   website?: string;
   social_x_link?: string;
   is_public?: boolean;
+  slug: string;
 };
 
 export function EditProfileModal({ data }: { data: ProfileData }) {

@@ -21,7 +21,7 @@ const navigationLinks = [
   { href: "/board", label: "Board" },
   { href: "/generate", label: "Generate" },
   { href: "/mcp", label: "MCPs" },
-  { href: "/community", label: "Community" },
+  // { href: "/community", label: "Community" },
   { href: "/games", label: "Games" },
   { href: "/learn", label: "Learn" },
   { href: "/advertise", label: "Advertise" },
