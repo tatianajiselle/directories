@@ -6,7 +6,6 @@ import { CreatePostModal } from "../modals/create-post-modal";
 import { SignInModal } from "../modals/sign-in-modal";
 import { Button } from "../ui/button";
 import { BoardPost } from "./board-post";
-
 // import { BoardSearch } from "./board-search";
 
 type BoardListProps = {
@@ -19,6 +18,7 @@ type BoardListProps = {
     content: string;
     created_at: string;
     vote_count: number;
+    user_slug: string;
   }[];
 };
 

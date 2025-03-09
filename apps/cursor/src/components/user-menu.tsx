@@ -13,35 +13,56 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { Skeleton } from "./ui/skeleton";
 
-interface Session {
-  user?: {
-    name?: string;
-    email?: string;
-    image?: string;
-    user_metadata?: {
-      avatar_url?: string;
-      full_name?: string;
-    };
-  };
-}
+type User = {
+  id: string;
+  slug: string;
+  name?: string;
+  email?: string;
+  image?: string;
+};
 
 export function UserMenu() {
   const pathname = usePathname();
   const supabase = createClient();
-
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-    });
+    async function getUser() {
+      setIsLoading(true);
+      const session = await supabase.auth.getSession();
+
+      if (!session.data.session) {
+        setIsLoading(false);
+        return;
+      }
+
+      const { data } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", session.data.session?.user?.id)
+        .single();
+
+      setUser(data);
+      setIsLoading(false);
+    }
+
+    getUser();
   }, []);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    setSession(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center gap-2">
+        <Skeleton className="size-6 rounded-none" />
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -50,17 +71,14 @@ export function UserMenu() {
       transition={{ duration: 0.3 }}
       className="flex items-center gap-4"
     >
-      {session ? (
+      {user ? (
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="size-6 rounded-none cursor-pointer">
-                <AvatarImage
-                  src={session.user?.user_metadata?.avatar_url}
-                  className="rounded-none"
-                />
-                <AvatarFallback>
-                  {session.user?.user_metadata?.full_name?.charAt(0)}
+                <AvatarImage src={user?.image} className="rounded-none" />
+                <AvatarFallback className="text-xs bg-[#878787]">
+                  {user?.name?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
@@ -70,12 +88,9 @@ export function UserMenu() {
               side="bottom"
               sideOffset={8}
             >
-              {/* <DropdownMenuItem asChild>
-                <Link href="/profile">Profile</Link>
-              </DropdownMenuItem> */}
-              {/* <DropdownMenuItem asChild>
-                <Link href="/settings">Settings</Link>
-              </DropdownMenuItem> */}
+              <DropdownMenuItem asChild>
+                <Link href={`/u/${user?.slug}`}>Profile</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={handleSignOut}>
                 Sign out
               </DropdownMenuItem>

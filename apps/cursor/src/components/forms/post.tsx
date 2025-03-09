@@ -117,7 +117,11 @@ export function PostForm({ onSuccess }: { onSuccess: () => void }) {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={createPost.isExecuting}
+        >
           {createPost.isExecuting ? "Submitting..." : "Submit"}
         </Button>
       </form>
