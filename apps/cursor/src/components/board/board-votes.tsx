@@ -53,10 +53,10 @@ export function BoardVotes({
         size="sm"
         onClick={handleVote}
         className={cn(
-          "flex items-center gap-2 h-8 px-4 rounded-full hover:bg-[#2D2D2D] hover:text-primary",
+          "flex items-center gap-2 h-8 px-4 rounded-full hover:text-primary",
           optimisticState.hasVoted
-            ? "bg-primary text-secondary"
-            : "bg-[#1D1D1D] hover:bg-[#2D2D2D] text-[#878787]",
+            ? "bg-[#1D1D1D] text-secondary dark:bg-primary dark:text-secondary"
+            : "bg-gray-50 hover:bg-[#1D1D1D] text-gray-500 dark:bg-[#1D1D1D] dark:hover:bg-[#2D2D2D] dark:text-[#878787]",
         )}
       >
         <span className="text-xs font-mono">
