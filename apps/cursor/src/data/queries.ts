@@ -1,7 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/admin-client";
 
 export async function getUserProfile(userId: string) {
-  const supabase = await createClient({ admin: true });
+  const supabase = await createClient();
 
   const { data } = await supabase
     .from("users")
@@ -13,7 +13,7 @@ export async function getUserProfile(userId: string) {
 }
 
 export async function getPopularPosts() {
-  const supabase = await createClient({ admin: true });
+  const supabase = await createClient();
   const { data } = await supabase.rpc("get_popular_posts");
 
   return data;

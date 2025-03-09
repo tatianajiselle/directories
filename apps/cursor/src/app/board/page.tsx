@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Explore what the community is talking about",
 };
 
-export const revalidate = 300; // 5 minutes
+export const revalidate = 60;
 
 export default async function Page() {
   const popularPosts = await getPopularPosts();

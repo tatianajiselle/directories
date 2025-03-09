@@ -70,9 +70,9 @@ export function UserMenu() {
               side="bottom"
               sideOffset={8}
             >
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link href="/profile">Profile</Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
               {/* <DropdownMenuItem asChild>
                 <Link href="/settings">Settings</Link>
               </DropdownMenuItem> */}
