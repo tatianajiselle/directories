@@ -49,11 +49,14 @@ export function UserMenu() {
       setIsLoading(false);
     }
 
-    getUser();
-  }, []);
+    if (!user) {
+      getUser();
+    }
+  }, [pathname]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    setUser(null);
   };
 
   if (isLoading) {
