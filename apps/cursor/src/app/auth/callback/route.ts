@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       ) {
         waitUntil(
           resend.emails.send({
-            from: "Cursor Directory <hello@emails.cursor.directory>",
+            from: "Cursor Directory <hello@transactional.cursor.directory>",
             to: data.session.user.email!,
             subject: "Welcome to Cursor Directory",
             react: WelcomeEmail({
