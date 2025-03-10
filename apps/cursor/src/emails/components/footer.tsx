@@ -17,7 +17,7 @@ export function Footer() {
       <Row className="mt-8" align="left" width="auto">
         <Column className="align-middle pr-6">
           <Link
-            href="https://twitter.com/languine_ai"
+            href="https://twitter.com/cursordirectory"
             className="text-black no-underline text-xl"
           >
             <Img
