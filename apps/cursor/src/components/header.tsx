@@ -18,9 +18,10 @@ import { UserMenu } from "./user-menu";
 
 const navigationLinks = [
   { href: "/rules", label: "Rules" },
-  { href: "/board", label: "Board" },
-  { href: "/generate", label: "Generate" },
+  { href: "/board", label: "Trending" },
+  { href: "/jobs", label: "Jobs" },
   { href: "/mcp", label: "MCPs" },
+  { href: "/generate", label: "Generate" },
   // { href: "/community", label: "Community" },
   { href: "/games", label: "Games" },
   { href: "/learn", label: "Learn" },
@@ -32,8 +33,8 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  const mainNavItems = navigationLinks.slice(0, 4);
-  const dropdownNavItems = navigationLinks.slice(4);
+  const mainNavItems = navigationLinks.slice(0, 5);
+  const dropdownNavItems = navigationLinks.slice(5);
 
   return (
     <div className="flex justify-between items-center mt-2 md:mt-0">
