@@ -36,7 +36,7 @@ export function Header() {
   const dropdownNavItems = navigationLinks.slice(4);
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mt-2 md:mt-0">
       <div className="md:fixed z-50 flex justify-between items-center top-0 px-6 py-2 w-full bg-background backdrop-filter backdrop-blur-sm bg-opacity-30">
         <Link href="/" className="font-medium font-mono text-sm">
           cursor.directory

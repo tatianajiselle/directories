@@ -78,6 +78,7 @@ export function BoardPost({
                 width={16}
                 height={17}
                 fill="none"
+                className="hidden md:block"
               >
                 <mask id="a" width={16} height={17}>
                   <path fill="#D9D9D9" d="M0 .5h16v16H0z" />

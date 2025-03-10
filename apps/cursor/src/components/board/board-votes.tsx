@@ -47,7 +47,7 @@ export function BoardVotes({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 ml-4">
       <Button
         variant="secondary"
         size="sm"

@@ -9,7 +9,7 @@ export const metadata = {
 export default function Advertise() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center max-w-screen-md mx-auto px-6 py-12">
+      <div className="flex flex-col items-center justify-center max-w-screen-md mx-auto px-6 py-12 pb-32">
         <h1 className="text-4xl mb-12 mt-20 text-center">
           Advertise on <br />
           Cursor Directory
