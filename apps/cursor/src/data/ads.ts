@@ -71,7 +71,7 @@ export const ads: Ad[] = [
     logoUrl:
       "https://pbs.twimg.com/profile_images/1886599096636694528/0Y8VYt94_400x400.png",
     imageUrl:
-      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-convex.jpg",
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-convex-v2.jpg",
     link: "https://dub.sh/quKS4BD",
   },
 ];
