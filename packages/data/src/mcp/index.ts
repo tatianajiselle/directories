@@ -7,11 +7,11 @@ export type MCP = {
 
 export default [
   {
-    name: "Linear",
-    url: "https://github.com/jerhadf/linear-mcp-server",
+    name: "Upstash",
+    url: "https://github.com/upstash/mcp-server",
     description:
-      "This server provides integration with Linear's issue tracking system through MCP, allowing LLMs to interact with Linear issues.",
-    logo: "https://cdn.brandfetch.io/iduDa181eM/theme/light/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B",
+      "Model Context Protocol (MCP) is a new, standardized protocol for managing context between large language models (LLMs) and external systems. In this repository, we provide an installer as well as an MCP Server for Upstash Developer API's.",
+    logo: "https://avatars.githubusercontent.com/u/74989412?s=200&v=4",
   },
   {
     name: "Github",
