@@ -65,12 +65,6 @@ const formSchema = z.object({
         .nullable(),
     ),
   is_public: z.boolean().default(true),
-  slug: z
-    .string()
-    .min(1, {
-      message: "Username is required.",
-    })
-    .optional(),
   image: z.string().url().nullable(),
 });
 
@@ -78,7 +72,6 @@ type CompanyData = {
   id: string;
   name?: string;
   location?: string;
-  slug?: string;
   bio?: string;
   website?: string;
   social_x_link?: string;
@@ -100,7 +93,6 @@ export function CompanyForm({ data }: { data?: CompanyData }) {
       website: data?.website ?? "",
       social_x_link: data?.social_x_link ?? "",
       is_public: data?.public ?? true,
-      slug: data?.slug,
       image: data?.image ?? null,
     },
   });
@@ -114,7 +106,6 @@ export function CompanyForm({ data }: { data?: CompanyData }) {
       website: data.website || null,
       social_x_link: data.social_x_link || null,
       is_public: data.is_public,
-      slug: data.slug ?? undefined,
       image: data.image || null,
     });
   };
@@ -139,28 +130,10 @@ export function CompanyForm({ data }: { data?: CompanyData }) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Company Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Your name"
-                      {...field}
-                      className="placeholder:text-[#878787] border-border"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="slug"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Your username"
+                      placeholder="Your company name"
                       {...field}
                       className="placeholder:text-[#878787] border-border"
                     />

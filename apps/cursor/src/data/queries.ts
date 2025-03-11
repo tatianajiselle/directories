@@ -67,3 +67,13 @@ export async function getCompanyProfile(slug: string, userId?: string) {
 
   return { data, error };
 }
+
+export async function getUserCompanies(userId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("companies")
+    .select("*")
+    .eq("owner_id", userId);
+
+  return { data, error };
+}

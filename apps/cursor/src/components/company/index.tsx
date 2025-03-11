@@ -6,20 +6,23 @@ import { CompanyHeader } from "./company-header";
 
 export async function Company({
   slug,
-  isProfilePage = false,
+  isCompanyPage = false,
 }: {
   slug: string;
-  isProfilePage?: boolean;
+  isCompanyPage?: boolean;
 }) {
   const session = await getSession();
-  const { data } = await getCompanyProfile(slug, session?.user?.id);
+  const { data } = await getCompanyProfile(
+    slug,
+    isCompanyPage ? session?.user?.id : undefined,
+  );
 
   const isOwner = session?.user?.id === data?.owner_id;
 
   if (!data) {
     return (
       <div className="flex justify-center items-center -mt-28 w-full h-screen text-sm text-[#878787]">
-        User not found
+        Company not found
       </div>
     );
   }
@@ -46,11 +49,6 @@ export async function Company({
       />
 
       <div className="my-14 space-y-10 w-full">
-        {/* {data?.posts?.map((post) => (
-          // @ts-ignore
-          <BoardPost key={post.id} {...post} />
-        ))} */}
-
         <div className="text-sm text-[#878787] flex justify-between items-center border-t border-border pt-6">
           <span>Joined Cursor Directory</span>
           {format(new Date(data?.created_at), "MMM d, yyyy")}

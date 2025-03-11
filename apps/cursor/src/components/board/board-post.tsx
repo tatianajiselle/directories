@@ -4,7 +4,7 @@ import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 import { BoardVotes } from "./board-votes";
 
-interface BoardPostProps {
+export interface BoardPostProps {
   post_id: number;
   title: string;
   has_voted: boolean;
