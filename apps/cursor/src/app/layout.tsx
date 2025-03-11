@@ -1,6 +1,7 @@
 import { Banner } from "@/components/banner";
 import "./globals.css";
 import { Header } from "@/components/header";
+import { GlobalModals } from "@/components/modals/global-modals";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
@@ -90,26 +91,28 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <NuqsAdapter>
+            <Header />
+            {children}
 
-          <NuqsAdapter>{children}</NuqsAdapter>
-
-          <a
-            href="https://github.com/pontusab/cursor.directory"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Button
-              className="hidden size-[48px] bg-[#F5F5F3]/30 text-black border border-black rounded-full font-medium fixed bottom-4 left-6 z-10 backdrop-blur-lg dark:bg-[#F5F5F3]/30 dark:text-white dark:border-white"
-              variant="outline"
-              size="icon"
+            <a
+              href="https://github.com/pontusab/cursor.directory"
+              target="_blank"
+              rel="noreferrer"
             >
-              <PlusIcon className="w-4 h-4" />
-            </Button>
-          </a>
+              <Button
+                className="hidden size-[48px] bg-[#F5F5F3]/30 text-black border border-black rounded-full font-medium fixed bottom-4 left-6 z-10 backdrop-blur-lg dark:bg-[#F5F5F3]/30 dark:text-white dark:border-white"
+                variant="outline"
+                size="icon"
+              >
+                <PlusIcon className="w-4 h-4" />
+              </Button>
+            </a>
 
-          <Banner />
-          <Toaster />
+            <Banner />
+            <Toaster />
+            <GlobalModals />
+          </NuqsAdapter>
         </ThemeProvider>
       </body>
 

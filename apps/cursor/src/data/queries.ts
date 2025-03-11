@@ -54,3 +54,16 @@ export async function getPopularPosts() {
     data,
   };
 }
+
+export async function getCompanyProfile(slug: string, userId?: string) {
+  const supabase = await createClient();
+  const query = supabase.from("companies").select("*").eq("slug", slug);
+
+  if (userId) {
+    query.eq("owner_id", userId);
+  }
+
+  const { data, error } = await query.single();
+
+  return { data, error };
+}
