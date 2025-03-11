@@ -74,4 +74,13 @@ export const ads: Ad[] = [
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-convex-v2.jpg",
     link: "https://dub.sh/quKS4BD",
   },
+  {
+    title: "Upstash",
+    description: "Serverless Data Platform for Developers and Agents",
+    logoUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-upstash-logo.png",
+    imageUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-upstash.jpg",
+    link: "https://dub.sh/O0Fclmb",
+  },
 ];
