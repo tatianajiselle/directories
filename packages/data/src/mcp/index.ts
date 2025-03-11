@@ -228,4 +228,11 @@ export default [
     description:
       "A Model Context Protocol (MCP) server that enables AI assistants like Claude to interact with your Inbox Zero account. This allows for natural language querying and management of your email during conversations.",
   },
+    {
+    name: "SettleMint",
+    url: "https://console.settlemint.com/documentation/building-with-settlemint/dev-tools/mcp",
+    description:
+      "Leverage SettleMint's Model Context Protocol server to seamlessly interact with enterprise blockchain infrastructure. Build, deploy, and manage smart contracts through AI-powered assistants, streamlining your blockchain development workflow for maximum efficiency.",
+    logo: "https://console.settlemint.com/android-chrome-512x512.png",
+  },
 ];
