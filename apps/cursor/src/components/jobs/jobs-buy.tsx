@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function JobsBuy() {
   return (
@@ -30,12 +31,14 @@ export function JobsBuy() {
           <br /> developers.
         </p>
 
-        <Button
-          className="font-mono mt-12 text-sm h-9 rounded-full border-white bg-transparent hover:bg-white hover:text-black transition-colors"
-          variant="outline"
-        >
-          Add job listing
-        </Button>
+        <Link href="/jobs/new">
+          <Button
+            className="font-mono mt-12 text-sm h-9 rounded-full border-white bg-transparent hover:bg-white hover:text-black transition-colors"
+            variant="outline"
+          >
+            Add job listing
+          </Button>
+        </Link>
       </div>
     </div>
   );
