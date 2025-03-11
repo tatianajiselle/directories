@@ -101,7 +101,7 @@ export default function Advertise() {
             <p className="text-primary mt-8 text-sm w-full">
               <Button asChild className="w-full">
                 <a href="https://buy.polar.sh/polar_cl_XZNMJtIvsTBndqeeVF5Xf1CNMBzpb0N69IpOc0hhCpX">
-                  By ad slot
+                  Buy ad slot
                 </a>
               </Button>
             </p>
