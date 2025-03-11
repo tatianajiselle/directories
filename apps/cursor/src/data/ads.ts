@@ -83,4 +83,13 @@ export const ads: Ad[] = [
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-upstash.jpg",
     link: "https://dub.sh/O0Fclmb",
   },
+  {
+    title: "Comp AI",
+    description: "Open Source - Get SOC 2, ISO 27001 & GDPR compliant",
+    logoUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-compai-logo.jpg",
+    imageUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-compai.png",
+    link: "https://dub.sh/DwzRg5D",
+  },
 ];
