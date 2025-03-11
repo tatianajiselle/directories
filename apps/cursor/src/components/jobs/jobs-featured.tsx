@@ -9,141 +9,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getFeaturedJobs } from "@/data/queries";
 import Image from "next/image";
 import Link from "next/link";
 
-const featuredJobs = [
-  {
-    id: 1,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 2,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 3,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 4,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 5,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 6,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 7,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-  {
-    id: 8,
-    title: "Frontend developer",
-    logo: "https://pbs.twimg.com/profile_images/1794806483219337216/9vW73mux_400x400.jpg",
-    description: "Building Scalable, Performant, and Accessible Web Interfaces",
-    link: "https://go.midday.ai/8cX3F4o",
-    experience: 4,
-    location: "New York, NY",
-    type: "Full-time",
-    salary: "100k - 150k",
-    workplace: "Hybrid",
-    company: {
-      name: "Cursor",
-      slug: "cursor",
-    },
-  },
-];
+export async function JobsFeatured() {
+  const { data: featuredJobs } = await getFeaturedJobs();
 
-export function JobsFeatured() {
   return (
     <Carousel
       opts={{
@@ -156,18 +28,18 @@ export function JobsFeatured() {
         <CarouselNext />
       </div>
       <CarouselContent>
-        {featuredJobs.map((job) => (
+        {featuredJobs?.map((job) => (
           <CarouselItem key={job.id} className="md:basis-1/2 lg:basis-1/4">
-            <Card className="bg-[#111111] text-white">
+            <Card className="bg-transparent">
               <CardContent className="flex flex-col gap-4 p-4">
                 <div className="flex items-center gap-3">
                   <Link href={`/c/${job.company.slug}`}>
                     <div className="relative h-12 w-12">
                       <Image
-                        src={job.logo}
+                        src={job.company.image}
                         alt={`${job.company.name} logo`}
                         fill
-                        className="object-cover"
+                        className="object-cover border border-border"
                       />
                     </div>
                   </Link>
@@ -179,14 +51,16 @@ export function JobsFeatured() {
                       {job.workplace && (
                         <>
                           <span>•</span>
-                          <span>{job.workplace}</span>
+                          <span className="line-clamp-1">{job.workplace}</span>
                         </>
                       )}
                     </div>
-                    <h3 className="text-md">{job.title}</h3>
+                    <h3 className="text-md line-clamp-1">{job.title}</h3>
                   </div>
                 </div>
-                <p className="text-[#878787] text-sm">{job.description}</p>
+                <p className="text-[#878787] text-sm line-clamp-2">
+                  {job.description}
+                </p>
                 <Button
                   variant="secondary"
                   size="sm"
@@ -198,7 +72,7 @@ export function JobsFeatured() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Apply
+                    View
                   </a>
                 </Button>
               </CardContent>

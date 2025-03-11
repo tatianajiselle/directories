@@ -77,3 +77,30 @@ export async function getUserCompanies(userId: string) {
 
   return { data, error };
 }
+
+export async function getFeaturedJobs() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .limit(100)
+    .order("created_at", { ascending: false })
+    .eq("featured", true)
+    .eq("active", true);
+
+  return { data, error };
+}
+
+export async function getJobs() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .limit(1000) // TODO: Pagination
+    .order("created_at", { ascending: false })
+    .order("featured", { ascending: false })
+    .eq("active", true);
+
+  return { data, error };
+}

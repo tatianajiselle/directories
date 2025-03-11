@@ -81,7 +81,7 @@ export async function Profile({
         </TabsContent>
       </Tabs>
 
-      <div className="text-sm text-[#878787] flex justify-between items-center border-t border-border pt-6">
+      <div className="text-sm text-[#878787] flex justify-between items-center border-t border-border pt-6 mt-10">
         <span>Joined Cursor Directory</span>
         {format(new Date(data?.created_at), "MMM d, yyyy")}
       </div>
