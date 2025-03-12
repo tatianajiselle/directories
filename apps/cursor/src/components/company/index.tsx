@@ -3,6 +3,7 @@ import { getSession } from "@/utils/supabase/auth";
 import { format } from "date-fns";
 import { CompanyContent } from "./company-content";
 import { CompanyHeader } from "./company-header";
+import { CompanyJobs } from "./company-jobs";
 
 export async function Company({
   slug,
@@ -47,6 +48,8 @@ export async function Company({
         website={data?.website}
         social_x_link={data?.social_x_link}
       />
+
+      <CompanyJobs slug={data?.slug} />
 
       <div className="my-14 space-y-10 w-full">
         <div className="text-sm text-[#878787] flex justify-between items-center border-t border-border pt-6">

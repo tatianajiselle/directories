@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -9,13 +7,30 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { getFeaturedJobs } from "@/data/queries";
-import Image from "next/image";
 import Link from "next/link";
+import * as React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-export async function JobsFeatured() {
-  const { data: featuredJobs } = await getFeaturedJobs();
+export type Job = {
+  id: string;
+  title: string;
+  description: string;
+  company: {
+    name: string;
+    slug: string;
+    image: string;
+  };
+  workplace: string;
+  link: string;
+};
 
+export function JobsFeatured({
+  data,
+  hidePagination,
+}: {
+  data: Job[] | null;
+  hidePagination?: boolean;
+}) {
   return (
     <Carousel
       opts={{
@@ -23,25 +38,31 @@ export async function JobsFeatured() {
       }}
       className="w-full relative"
     >
-      <div className="absolute -top-10 right-0 flex gap-2">
-        <CarouselPrevious />
-        <CarouselNext />
-      </div>
+      {!hidePagination && (
+        <div className="absolute -top-10 right-0 flex gap-2">
+          <CarouselPrevious />
+          <CarouselNext />
+        </div>
+      )}
       <CarouselContent>
-        {featuredJobs?.map((job) => (
+        {data?.map((job) => (
           <CarouselItem key={job.id} className="md:basis-1/2 lg:basis-1/4">
             <Card className="bg-transparent">
               <CardContent className="flex flex-col gap-4 p-4">
                 <div className="flex items-center gap-3">
                   <Link href={`/c/${job.company.slug}`}>
-                    <div className="relative h-12 w-12">
-                      <Image
-                        src={job.company.image}
-                        alt={`${job.company.name} logo`}
-                        fill
-                        className="object-cover border border-border"
-                      />
-                    </div>
+                    <Avatar className="size-12 rounded-none">
+                      {job.company.image ? (
+                        <AvatarImage
+                          src={job.company.image}
+                          alt={job.company.name}
+                        />
+                      ) : (
+                        <AvatarFallback className="bg-[#1c1c1c] rounded-none">
+                          {job.company.name.charAt(0)}
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
                   </Link>
                   <div>
                     <div className="flex items-center gap-2 text-xs text-[#878787] font-mono line-clamp-1">

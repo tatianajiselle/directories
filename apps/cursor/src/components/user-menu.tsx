@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useQueryState } from "nuqs";
+import { useQueryStates } from "nuqs";
 import { parseAsBoolean } from "nuqs";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -31,10 +31,10 @@ export function UserMenu() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [_, openAddCompany] = useQueryState(
-    "add-company",
-    parseAsBoolean.withDefault(false),
-  );
+  const [_, setQueryStates] = useQueryStates({
+    addCompany: parseAsBoolean.withDefault(false),
+    redirect: parseAsBoolean.withDefault(false),
+  });
 
   useEffect(() => {
     async function getUser() {
@@ -104,11 +104,16 @@ export function UserMenu() {
               <DropdownMenuItem asChild>
                 <button
                   type="button"
-                  onClick={() => openAddCompany(true)}
+                  onClick={() =>
+                    setQueryStates({ addCompany: true, redirect: true })
+                  }
                   className="w-full text-left"
                 >
                   Add Company
                 </button>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/jobs/new">Post a job</Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleSignOut}>
                 Sign out

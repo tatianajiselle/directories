@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
@@ -25,17 +26,19 @@ export function JobsCard({
   return (
     <Card className="p-0 border-none bg-transparent">
       <CardHeader className="p-0 space-y-2">
-        <div className="flex items-center gap-2">
-          <Avatar className="size-4 rounded-none">
-            {company.image ? (
-              <AvatarImage src={company.image} alt={company.name} />
-            ) : (
-              <AvatarFallback className="bg-accent">
-                {company.name.charAt(0)}
-              </AvatarFallback>
-            )}
-          </Avatar>
-          <div className="flex flex-row space-x-1">
+        <div className="flex items-center gap-2 relative">
+          <Link href={`/c/${company.slug}`}>
+            <Avatar className="size-4 rounded-none">
+              {company.image ? (
+                <AvatarImage src={company.image} alt={company.name} />
+              ) : (
+                <AvatarFallback className="bg-accent text-[9px]">
+                  {company.name.charAt(0)}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </Link>
+          <div className="flex flex-row space-x-1 ">
             <CardTitle className="text-xs text-[#878787] font-mono">
               <Link href={`/c/${company.slug}`}>{company.name}</Link>
             </CardTitle>
@@ -48,6 +51,7 @@ export function JobsCard({
                 </span>
               </>
             )}
+
             {location && (
               <>
                 <span className="text-xs text-[#878787] font-mono">•</span>
@@ -66,6 +70,21 @@ export function JobsCard({
               </>
             )}
           </div>
+
+          <Button
+            variant="secondary"
+            size="sm"
+            className="w-fit bg-[#1c1c1c] text-[#878787] hover:bg-[#2c2c2c] rounded-full font-mono text-xs absolute right-0"
+            asChild
+          >
+            <a
+              href={`${link}?utm_source=cursor.directory&utm_medium=referral&utm_campaign=jobs-featured`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View
+            </a>
+          </Button>
         </div>
         <div className="flex flex-row justify-between">
           <CardTitle className="text-md font-normal flex items-center gap-2">

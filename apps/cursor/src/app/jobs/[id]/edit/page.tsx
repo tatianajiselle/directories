@@ -4,13 +4,16 @@ import { GoogleSignin } from "@/components/google-signin";
 import { getSession } from "@/utils/supabase/auth";
 import type { Metadata } from "next";
 
+type Params = Promise<{ id: string }>;
+
 export const metadata: Metadata = {
-  title: "Create a new job listing | Cursor Directory",
+  title: "Edit job listing | Cursor Directory",
   description:
-    "Create a new job listing on Cursor Directory and reach 220k+ developers today.",
+    "Edit a job listing on Cursor Directory and reach 220k+ developers today.",
 };
 
-export default async function Page() {
+export default async function Page({ params }: { params: Params }) {
+  const { id } = await params;
   const session = await getSession();
 
   if (!session) {
@@ -18,7 +21,7 @@ export default async function Page() {
       <div className="min-h-screen flex items-center justify-center p-4 w-full max-w-sm mx-auto">
         <div className="max-w-md w-full text-center -mt-32">
           <p className="text-md mt-4">
-            Sign in to post a job listing <br />
+            Sign in to edit a job listing <br />
             and reach 220k+ developers today.
           </p>
 
@@ -35,7 +38,7 @@ export default async function Page() {
 
   return (
     <div className="mx-auto max-w-screen-sm xl:max-w-screen-sm border-t border-border pt-32 pb-16">
-      <h1 className="text-2xl mb-4">Create a new job listing</h1>
+      <h1 className="text-2xl mb-4">Edit job listing</h1>
       <JobForm />
     </div>
   );

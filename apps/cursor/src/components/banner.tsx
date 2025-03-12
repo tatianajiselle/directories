@@ -216,7 +216,8 @@ export function Banner() {
   if (
     pathname === "/generate" ||
     pathname.includes("/games") ||
-    pathname.includes("/board")
+    pathname.includes("/board") ||
+    pathname.includes("/jobs/new")
   )
     return null;
 

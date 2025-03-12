@@ -84,11 +84,15 @@ export async function getFeaturedJobs() {
     .from("jobs")
     .select("*, company:companies(*)")
     .limit(100)
+    .order("order", { ascending: false })
     .order("created_at", { ascending: false })
-    .eq("featured", true)
     .eq("active", true);
 
-  return { data, error };
+  return {
+    // Shuffle the data
+    data: data?.sort(() => Math.random() - 0.5),
+    error,
+  };
 }
 
 export async function getJobs() {
@@ -98,9 +102,21 @@ export async function getJobs() {
     .from("jobs")
     .select("*, company:companies(*)")
     .limit(1000) // TODO: Pagination
+    .order("order", { ascending: false })
     .order("created_at", { ascending: false })
-    .order("featured", { ascending: false })
     .eq("active", true);
+
+  return { data, error };
+}
+
+export async function getJobsByCompany(slug: string) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, companies!inner(*)")
+    .eq("companies.slug", slug)
+    .order("created_at", { ascending: false });
 
   return { data, error };
 }

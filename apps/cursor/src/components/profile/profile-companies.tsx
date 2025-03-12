@@ -17,7 +17,7 @@ export async function ProfileCompanies({
         <p className="text-[#878787] mb-4 text-sm font-mono">
           No companies added yet
         </p>
-        {isOwner && <AddCompanyButton />}
+        {isOwner && <AddCompanyButton redirect={true} />}
       </div>
     );
   }

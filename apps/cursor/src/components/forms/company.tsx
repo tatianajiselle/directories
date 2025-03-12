@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "nanoid";
 import { useAction } from "next-safe-action/hooks";
+import { parseAsBoolean, useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import UploadLogo from "../upload-logo";
@@ -79,8 +80,26 @@ type CompanyData = {
   image?: string;
 };
 
-export function CompanyForm({ data }: { data?: CompanyData }) {
-  const { execute, isExecuting } = useAction(upsertCompanyAction);
+export function CompanyForm({
+  data,
+  redirect,
+}: {
+  data?: CompanyData;
+  redirect?: boolean;
+}) {
+  const [_, setReload] = useQueryState(
+    "reload",
+    parseAsBoolean.withDefault(false),
+  );
+
+  const { execute, isExecuting } = useAction(upsertCompanyAction, {
+    onSuccess: () => {
+      if (!redirect) {
+        // Refresh for the new company to be visible in job form
+        setReload(true);
+      }
+    },
+  });
 
   const id = data?.id ?? nanoid();
 
@@ -107,6 +126,7 @@ export function CompanyForm({ data }: { data?: CompanyData }) {
       social_x_link: data.social_x_link || null,
       is_public: data.is_public,
       image: data.image || null,
+      redirect,
     });
   };
 

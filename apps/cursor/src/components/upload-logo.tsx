@@ -1,8 +1,9 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
+import { PlusIcon } from "lucide-react";
 import Image from "next/image";
-import { type ChangeEvent, type DragEvent, useState } from "react";
+import { type ChangeEvent, type DragEvent, useRef, useState } from "react";
 
 interface UploadLogoProps {
   onUpload?: (url: string) => void;
@@ -18,6 +19,7 @@ export default function UploadLogo({
   const [preview, setPreview] = useState<string | null>(image ?? null);
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = async (file: File) => {
     if (!file.type.startsWith("image/")) {
@@ -98,17 +100,39 @@ export default function UploadLogo({
     }
   };
 
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div
-      className={`relative w-[100px] h-[100px] border border-border 
+      className={`relative w-[80px] h-[80px] border border-border 
          transition-colors duration-200 cursor-pointer`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleClick();
+        }
+      }}
+      style={{
+        backgroundImage: `repeating-linear-gradient(
+          -60deg,
+          transparent,
+          transparent 1px,
+          #2C2C2C 1px,
+          #2C2C2C 2px,
+          transparent 2px,
+          transparent 6px
+        )`,
+      }}
     >
       <input
+        ref={fileInputRef}
         type="file"
-        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        className="hidden"
         onChange={handleFileInput}
         accept="image/*"
       />
@@ -121,24 +145,8 @@ export default function UploadLogo({
           className="object-cover rounded-lg"
         />
       ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-sm text-gray-500">
-          <svg
-            className="w-6 h-6 mb-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
-          <span className="text-xs text-center px-2">
-            Drop logo or click to upload
-          </span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-primary">
+          <PlusIcon className="size-4" />
         </div>
       )}
     </div>

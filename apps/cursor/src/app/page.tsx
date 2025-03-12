@@ -1,4 +1,5 @@
-import { GlobalSearch } from "@/components/global-search";
+import { Startpage } from "@/components/startpage";
+import { getFeaturedJobs } from "@/data/queries";
 import { getPopularRules } from "@directories/data/popular";
 import type { Metadata } from "next";
 
@@ -14,11 +15,12 @@ export const revalidate = 86400; // Revalidate once every day
 
 export default async function Page() {
   const popularRules = await getPopularRules();
+  const { data: featuredJobs } = await getFeaturedJobs();
 
   return (
     <div className="flex justify-center min-h-screen w-full md:px-0 px-6 mt-[10%]">
       <div className="w-full max-w-6xl">
-        <GlobalSearch sections={popularRules} />
+        <Startpage sections={popularRules} jobs={featuredJobs} />
       </div>
     </div>
   );

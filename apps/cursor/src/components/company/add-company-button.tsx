@@ -1,20 +1,21 @@
 "use client";
 
-import { useQueryState } from "nuqs";
+import { useQueryStates } from "nuqs";
 import { parseAsBoolean } from "nuqs";
 import { Button } from "../ui/button";
 
-export function AddCompanyButton() {
-  const [_, setAddCompany] = useQueryState(
-    "add-company",
-    parseAsBoolean.withDefault(false),
-  );
+export function AddCompanyButton({ redirect }: { redirect?: boolean }) {
+  const [_, setAddCompany] = useQueryStates({
+    addCompany: parseAsBoolean.withDefault(false),
+    redirect: parseAsBoolean.withDefault(redirect ?? false),
+  });
 
   return (
     <Button
+      type="button"
       variant="outline"
       className="border-border rounded-full"
-      onClick={() => setAddCompany(true)}
+      onClick={() => setAddCompany({ addCompany: true, redirect })}
     >
       Add company
     </Button>

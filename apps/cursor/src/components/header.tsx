@@ -19,7 +19,7 @@ import { UserMenu } from "./user-menu";
 const navigationLinks = [
   { href: "/rules", label: "Rules" },
   { href: "/board", label: "Trending" },
-  // { href: "/jobs", label: "Jobs" },
+  { href: "/jobs", label: "Jobs" },
   { href: "/mcp", label: "MCPs" },
   { href: "/generate", label: "Generate" },
   // { href: "/community", label: "Community" },

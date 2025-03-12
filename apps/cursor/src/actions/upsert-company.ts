@@ -20,6 +20,7 @@ export const upsertCompanyAction = authActionClient
       website: z.string().nullable(),
       social_x_link: z.string().nullable(),
       is_public: z.boolean(),
+      redirect: z.boolean().optional(),
     }),
   )
   .action(
@@ -34,6 +35,7 @@ export const upsertCompanyAction = authActionClient
         website,
         social_x_link,
         is_public,
+        redirect: shouldRedirect,
       },
     }) => {
       const supabase = await createClient();
@@ -65,7 +67,9 @@ export const upsertCompanyAction = authActionClient
         throw new Error(error.message);
       }
 
-      redirect(`/c/${data?.slug}`);
+      if (shouldRedirect) {
+        redirect(`/c/${data?.slug}`);
+      }
 
       return data;
     },
