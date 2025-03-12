@@ -28,7 +28,7 @@ export function JobsFeatured({
   data,
   hidePagination,
 }: {
-  data: Job[] | null;
+  data?: Job[] | null;
   hidePagination?: boolean;
 }) {
   return (

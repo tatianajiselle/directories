@@ -2,8 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { JobsEditButton } from "./jobs-edit-button";
 
 export interface JobsCardProps {
+  id: string;
   title: string;
   location: string;
   description: string;
@@ -11,6 +13,7 @@ export interface JobsCardProps {
   link: string;
   workplace: string;
   experience: string;
+  owner_id: string;
   company: {
     name: string;
     image: string;
@@ -19,7 +22,17 @@ export interface JobsCardProps {
 }
 
 export function JobsCard({
-  data: { title, company, location, description, link, workplace, experience },
+  data: {
+    id,
+    title,
+    company,
+    location,
+    description,
+    link,
+    workplace,
+    experience,
+    owner_id,
+  },
 }: {
   data: JobsCardProps;
 }) {
@@ -71,21 +84,26 @@ export function JobsCard({
             )}
           </div>
 
-          <Button
-            variant="secondary"
-            size="sm"
-            className="w-fit bg-[#1c1c1c] text-[#878787] hover:bg-[#2c2c2c] rounded-full font-mono text-xs absolute right-0"
-            asChild
-          >
-            <a
-              href={`${link}?utm_source=cursor.directory&utm_medium=referral&utm_campaign=jobs-featured`}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="absolute right-0 flex gap-2">
+            <JobsEditButton ownerId={owner_id} id={id} />
+
+            <Button
+              variant="secondary"
+              size="sm"
+              className="w-fit bg-[#1c1c1c] text-[#878787] hover:bg-[#2c2c2c] rounded-full font-mono text-xs"
+              asChild
             >
-              View
-            </a>
-          </Button>
+              <a
+                href={`${link}?utm_source=cursor.directory&utm_medium=referral&utm_campaign=jobs-featured`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View
+              </a>
+            </Button>
+          </div>
         </div>
+
         <div className="flex flex-row justify-between">
           <CardTitle className="text-md font-normal flex items-center gap-2">
             <span>

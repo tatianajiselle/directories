@@ -20,6 +20,7 @@ type Company = {
 
 export function CompanySelect({
   onChange,
+  value,
 }: {
   value?: string;
   onChange: (value: string) => void;
@@ -44,11 +45,11 @@ export function CompanySelect({
           .select("id, name")
           .eq("owner_id", session.user.id)
           .order("created_at", { ascending: false });
-
         if (data) {
           setCompanies(data);
-          setSelectedCompany(data[0]);
-          onChange(data[0].id);
+          const initialCompany = data.find((c) => c.id === value) || data[0];
+          setSelectedCompany(initialCompany);
+          onChange(initialCompany.id);
         }
       }
     }
@@ -68,7 +69,7 @@ export function CompanySelect({
         onValueChange={(value) => {
           const company = companies.find((c) => c.id === value);
           setSelectedCompany(company || null);
-          onChange(value);
+          onChange(company?.id ?? "");
         }}
       >
         <SelectTrigger className="w-full border-border">

@@ -120,3 +120,14 @@ export async function getJobsByCompany(slug: string) {
 
   return { data, error };
 }
+
+export async function getJobById(id: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .eq("id", id)
+    .single();
+
+  return { data, error };
+}

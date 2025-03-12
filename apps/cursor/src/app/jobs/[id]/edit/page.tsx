@@ -1,8 +1,11 @@
-import { JobForm } from "@/components/forms/job";
+import { EditJobForm } from "@/components/forms/edit-job";
 import { GithubSignin } from "@/components/github-signin";
 import { GoogleSignin } from "@/components/google-signin";
+import { JobListingSwitch } from "@/components/jobs/jobs-listing-switch";
+import { getJobById } from "@/data/queries";
 import { getSession } from "@/utils/supabase/auth";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 type Params = Promise<{ id: string }>;
 
@@ -15,6 +18,7 @@ export const metadata: Metadata = {
 export default async function Page({ params }: { params: Params }) {
   const { id } = await params;
   const session = await getSession();
+  const { data: job } = await getJobById(id);
 
   if (!session) {
     return (
@@ -36,10 +40,18 @@ export default async function Page({ params }: { params: Params }) {
     );
   }
 
+  if (job?.owner_id !== session.user.id) {
+    redirect("/jobs");
+  }
+
   return (
     <div className="mx-auto max-w-screen-sm xl:max-w-screen-sm border-t border-border pt-32 pb-16">
-      <h1 className="text-2xl mb-4">Edit job listing</h1>
-      <JobForm />
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl mb-4">Edit job listing </h1>
+        <JobListingSwitch id={job.id} active={job.active} />
+      </div>
+
+      <EditJobForm data={job} />
     </div>
   );
 }
