@@ -9,7 +9,7 @@ export default function MCPList() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-regular mb-4">MCP Servers</h3>
+        <h3 className="text-base font-regular">Featured MCPs</h3>
         <Link
           href="/mcp"
           className="text-sm text-[#878787] flex items-center gap-1"

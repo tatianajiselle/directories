@@ -54,3 +54,85 @@ export async function getPopularPosts() {
     data,
   };
 }
+
+export async function getCompanyProfile(slug: string, userId?: string) {
+  const supabase = await createClient();
+  const query = supabase.from("companies").select("*").eq("slug", slug);
+
+  if (userId) {
+    query.eq("owner_id", userId);
+  }
+
+  const { data, error } = await query.single();
+
+  return { data, error };
+}
+
+export async function getUserCompanies(userId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("companies")
+    .select("*")
+    .eq("owner_id", userId);
+
+  return { data, error };
+}
+
+export async function getFeaturedJobs({
+  onlyPremium,
+}: {
+  onlyPremium?: boolean;
+} = {}) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .limit(100)
+    .order("order", { ascending: false })
+    .order("created_at", { ascending: false })
+    .eq("active", true)
+    .or(onlyPremium ? "plan.eq.premium" : "plan.eq.featured,plan.eq.premium");
+
+  return {
+    // Shuffle the data
+    data: data?.sort(() => Math.random() - 0.5),
+    error,
+  };
+}
+
+export async function getJobs() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .limit(1000) // TODO: Pagination
+    .order("order", { ascending: false })
+    .order("created_at", { ascending: false })
+    .eq("active", true);
+
+  return { data, error };
+}
+
+export async function getJobsByCompany(slug: string) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, companies!inner(*)")
+    .eq("companies.slug", slug)
+    .order("created_at", { ascending: false });
+
+  return { data, error };
+}
+
+export async function getJobById(id: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*, company:companies(*)")
+    .eq("id", id)
+    .single();
+
+  return { data, error };
+}

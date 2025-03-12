@@ -1,13 +1,11 @@
 import { LinkIcon, XIcon } from "lucide-react";
 
-export function ProfileContent({
+export function CompanyContent({
   bio,
-  work,
   website,
   social_x_link,
 }: {
   bio: string;
-  work: string;
   website: string;
   social_x_link: string;
 }) {
@@ -19,13 +17,6 @@ export function ProfileContent({
         <div>
           <p>About</p>
           <p className="text-sm font-mono text-[#878787] mt-2">{bio}</p>
-        </div>
-      )}
-
-      {work && (
-        <div>
-          <p>Work</p>
-          <p className="text-sm font-mono text-[#878787] mt-2">{work}</p>
         </div>
       )}
 
