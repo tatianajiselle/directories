@@ -78,7 +78,11 @@ export async function getUserCompanies(userId: string) {
   return { data, error };
 }
 
-export async function getFeaturedJobs() {
+export async function getFeaturedJobs({
+  onlyPremium,
+}: {
+  onlyPremium?: boolean;
+} = {}) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("jobs")
@@ -86,7 +90,8 @@ export async function getFeaturedJobs() {
     .limit(100)
     .order("order", { ascending: false })
     .order("created_at", { ascending: false })
-    .eq("active", true);
+    .eq("active", true)
+    .or(onlyPremium ? "plan.eq.premium" : "plan.eq.featured,plan.eq.premium");
 
   return {
     // Shuffle the data

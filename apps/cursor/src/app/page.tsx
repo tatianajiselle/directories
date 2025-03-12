@@ -15,7 +15,9 @@ export const revalidate = 86400; // Revalidate once every day
 
 export default async function Page() {
   const popularRules = await getPopularRules();
-  const { data: featuredJobs } = await getFeaturedJobs();
+  const { data: featuredJobs } = await getFeaturedJobs({
+    onlyPremium: true,
+  });
 
   return (
     <div className="flex justify-center min-h-screen w-full md:px-0 px-6 mt-[10%]">
