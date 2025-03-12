@@ -15,7 +15,7 @@ export function Startpage({
   jobs,
 }: {
   sections: Section[];
-  jobs: Job[] | null;
+  jobs?: Job[] | null;
 }) {
   return (
     <div>

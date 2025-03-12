@@ -15,6 +15,8 @@ export async function CompanyJobs({ slug }: { slug: string }) {
         <JobsCard
           key={job.id}
           data={{
+            id: job.id,
+            owner_id: job.owner_id,
             title: job.title,
             company: job.companies,
             location: job.location,

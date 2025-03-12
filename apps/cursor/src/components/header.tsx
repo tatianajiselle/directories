@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { CommandMenu } from "./command-menu";
 import { MobileMenu } from "./mobile-menu";
 import { Button } from "./ui/button";
@@ -89,7 +89,9 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <UserMenu />
+          <Suspense fallback={null}>
+            <UserMenu />
+          </Suspense>
         </div>
       </div>
       <MobileMenu />
