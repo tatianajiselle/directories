@@ -143,6 +143,11 @@ export default [
     description: "Unified API for search, crawling, and sitemaps",
   },
   {
+    name: "Logseq MCP Tools",
+    description: "A Model Context Protocol (MCP) server that provides AI assistants with structured access to your Logseq knowledge graph.",
+    url: "https://github.com/joelhooks/logseq-mcp-tools",
+  },
+  {
     name: "Docker",
     url: "https://github.com/ckreiling/mcp-server-docker",
     description: "Manage containers, images, volumes, and networks",
