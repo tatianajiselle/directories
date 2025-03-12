@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 import { RulesSearch } from "./rules-search";
 import { Button } from "./ui/button";
 
@@ -43,7 +44,9 @@ export function Tabs() {
         ))}
       </div>
 
-      <RulesSearch />
+      <Suspense fallback={null}>
+        <RulesSearch />
+      </Suspense>
     </div>
   );
 }
