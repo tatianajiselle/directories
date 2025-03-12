@@ -34,7 +34,7 @@ export const createJobListingAction = authActionClient
         experience,
         plan,
       },
-      ctx: { userId, email, name },
+      ctx: { email, name },
     }) => {
       const supabase = await createClient();
 

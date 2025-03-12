@@ -8,6 +8,7 @@ import type { Section } from "@directories/data/rules";
 import { useQueryState } from "nuqs";
 import { Fragment, useEffect, useState } from "react";
 import { AdCardSmall } from "./ad-card-small";
+import { Button } from "./ui/button";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -18,7 +19,7 @@ export function RuleList({
   sections: Section[];
   small?: boolean;
 }) {
-  const [search] = useQueryState("q");
+  const [search, setSearch] = useQueryState("q");
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
   const [randomAds, setRandomAds] = useState<Record<string, (typeof ads)[0]>>(
     {},
@@ -87,6 +88,23 @@ export function RuleList({
   };
 
   let totalItemsCount = 0;
+
+  if (!filteredSections.length) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="flex-col gap-4 flex items-center">
+          <p className="text-[#878787] text-sm">No rules found</p>
+          <Button
+            variant="outline"
+            className="mt-2 border-border rounded-full"
+            onClick={() => setSearch(null)}
+          >
+            Clear search
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
