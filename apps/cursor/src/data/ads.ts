@@ -23,7 +23,7 @@ export const ads: Ad[] = [
     logoUrl:
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-midday-logo.png",
     imageUrl:
-      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-midday.png",
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-midday.png?cache=1",
     link: "https://go.midday.ai/8cX3F4o",
   },
   {
@@ -32,7 +32,7 @@ export const ads: Ad[] = [
     logoUrl:
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-languine-logo.png",
     imageUrl:
-      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-languine.png",
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-languine.png?cache=1",
     link: "https://go.midday.ai/NnI1CUO",
   },
   {
