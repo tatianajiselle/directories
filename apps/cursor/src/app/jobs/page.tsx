@@ -19,9 +19,9 @@ export default async function Page() {
       <p className="text-sm text-[#878787] mb-8">
         Browse positions or{" "}
         <Link href="/jobs/new" className="border-b border-border border-dashed">
-          post a job to reach 220,000+ developers
+          post a job to reach 220,000+ monthly active developers
         </Link>
-        . Remote, hybrid and on-site opportunities available.
+        .
       </p>
 
       <JobsFeatured data={featuredJobs} />

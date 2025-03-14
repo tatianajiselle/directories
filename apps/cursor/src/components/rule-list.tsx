@@ -155,7 +155,7 @@ export function RuleList({
                 Math.min(prev + ITEMS_PER_PAGE, filteredSections.length),
               )
             }
-            className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground"
+            className="px-4 py-2 text-sm text-[#878787]"
           >
             Loading more...
           </button>

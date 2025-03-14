@@ -45,11 +45,13 @@ export function CompanySelect({
           .select("id, name")
           .eq("owner_id", session.user.id)
           .order("created_at", { ascending: false });
+
         if (data) {
           setCompanies(data);
+
           const initialCompany = data.find((c) => c.id === value) || data[0];
           setSelectedCompany(initialCompany);
-          onChange(initialCompany.id);
+          onChange(initialCompany?.id ?? "");
         }
       }
     }
@@ -72,18 +74,23 @@ export function CompanySelect({
           onChange(company?.id ?? "");
         }}
       >
-        <SelectTrigger className="w-full border-border">
+        <SelectTrigger
+          className="w-full border-border"
+          disabled={companies.length === 0}
+        >
           <SelectValue placeholder="Select company" />
         </SelectTrigger>
-        <SelectContent className="max-h-[200px] overflow-y-auto">
-          <SelectGroup>
-            {companies?.map((company) => (
-              <SelectItem key={company.id} value={company.id}>
-                {company.name}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
+        {companies.length > 0 && (
+          <SelectContent className="max-h-[200px] overflow-y-auto">
+            <SelectGroup>
+              {companies?.map((company) => (
+                <SelectItem key={company.id} value={company.id}>
+                  {company.name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        )}
       </Select>
 
       <AddCompanyButton redirect={false} />

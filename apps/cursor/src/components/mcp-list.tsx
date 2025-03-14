@@ -1,11 +1,11 @@
-import data from "@directories/data/mcp";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import slugify from "slugify";
+import type { MCP } from "./mcps/mcps-featured";
 
-export default function MCPList() {
+export default function MCPList({ data }: { data?: MCP[] | null }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -51,7 +51,7 @@ export default function MCPList() {
             staggerChildren: 0.05,
           }}
         >
-          {data.map((mcp, index) => (
+          {data?.map((mcp, index) => (
             <motion.div
               key={mcp.name}
               initial={{ y: 20, opacity: 0 }}
