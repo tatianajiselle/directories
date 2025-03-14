@@ -26,7 +26,11 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const { data: mcps } = await getMCPs();
 
-  return mcps?.map((mcp) => ({
+  if (!mcps) {
+    return [];
+  }
+
+  return mcps.map((mcp) => ({
     slug: mcp.slug,
   }));
 }

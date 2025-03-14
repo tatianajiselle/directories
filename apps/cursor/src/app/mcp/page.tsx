@@ -3,6 +3,7 @@ import { MCPsList } from "@/components/mcps/mcps-list";
 import { getFeaturedMCPs, getMCPs } from "@/data/queries";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "MCP Servers for Cursor",
@@ -27,7 +28,9 @@ export default async function Page() {
       </p>
 
       <MCPsFeatured data={featuredMCPs} />
-      <MCPsList data={mcps} />
+      <Suspense fallback={null}>
+        <MCPsList data={mcps} />
+      </Suspense>
     </div>
   );
 }
