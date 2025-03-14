@@ -92,4 +92,14 @@ export const ads: Ad[] = [
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-compai.png",
     link: "https://dub.sh/DwzRg5D",
   },
+  {
+    title: "Build APIs LLMs love",
+    description:
+      "The modern API toolchain — generate SDKs, docs, and agent tools from OpenAPI",
+    logoUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-speakeasy-logo.png",
+    imageUrl:
+      "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-speakeasy.jpg",
+    link: "https://dub.sh/kSWogBB",
+  },
 ];
