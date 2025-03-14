@@ -1,5 +1,5 @@
 import { Startpage } from "@/components/startpage";
-import { getFeaturedJobs } from "@/data/queries";
+import { getFeaturedJobs, getFeaturedMCPs } from "@/data/queries";
 import { getPopularRules } from "@directories/data/popular";
 import type { Metadata } from "next";
 
@@ -19,10 +19,18 @@ export default async function Page() {
     onlyPremium: true,
   });
 
+  const { data: featuredMCPs } = await getFeaturedMCPs({
+    onlyPremium: true,
+  });
+
   return (
     <div className="flex justify-center min-h-screen w-full md:px-0 px-6 mt-[10%]">
       <div className="w-full max-w-6xl">
-        <Startpage sections={popularRules} jobs={featuredJobs} />
+        <Startpage
+          sections={popularRules}
+          jobs={featuredJobs}
+          mcps={featuredMCPs}
+        />
       </div>
     </div>
   );

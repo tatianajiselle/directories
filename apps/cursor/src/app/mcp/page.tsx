@@ -1,19 +1,33 @@
-import { Search } from "@/components/search";
-import mcpData from "@directories/data/mcp";
+import { MCPsFeatured } from "@/components/mcps/mcps-featured";
+import { MCPsList } from "@/components/mcps/mcps-list";
+import { getFeaturedMCPs, getMCPs } from "@/data/queries";
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "MCP Servers for Cursor",
   description: "MCP Servers",
 };
 
-export default function Page() {
+export const revalidate = 3600;
+
+export default async function Page() {
+  const { data: featuredMCPs } = await getFeaturedMCPs();
+  const { data: mcps } = await getMCPs();
+
   return (
-    <div className="flex justify-center min-h-screen w-full mt-12 md:mt-36">
-      <Suspense fallback={null}>
-        <Search data={mcpData} />
-      </Suspense>
+    <div className="max-w-screen-xl mx-auto px-6 py-12 mt-24">
+      <h1 className="text-xl mb-2">Featured MCPs</h1>
+      <p className="text-sm text-[#878787] mb-8">
+        Browse MCPs or{" "}
+        <Link href="/mcp/new" className="border-b border-border border-dashed">
+          post a MCP to reach 220,000+ monthly active developers
+        </Link>
+        .
+      </p>
+
+      <MCPsFeatured data={featuredMCPs} />
+      <MCPsList data={mcps} />
     </div>
   );
 }

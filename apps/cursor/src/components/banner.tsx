@@ -217,7 +217,7 @@ export function Banner() {
     pathname === "/generate" ||
     pathname.includes("/games") ||
     pathname.includes("/board") ||
-    pathname.includes("/jobs/new") ||
+    pathname.endsWith("/new") ||
     pathname.endsWith("/edit")
   )
     return null;

@@ -8,15 +8,18 @@ import { GlobalSearchInput } from "./global-search-input";
 import { HeroTitle } from "./hero-title";
 import { type Job, JobsFeatured } from "./jobs/jobs-featured";
 import MCPList from "./mcp-list";
+import type { MCP } from "./mcps/mcps-featured";
 import { RuleList } from "./rule-list";
 import { Cursor } from "./ui/cursor";
 
 export function Startpage({
   sections,
   jobs,
+  mcps,
 }: {
   sections: Section[];
   jobs?: Job[] | null;
+  mcps?: MCP[] | null;
 }) {
   const [search] = useQueryState("q", { defaultValue: "" });
 
@@ -46,7 +49,7 @@ export function Startpage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
-            <MCPList />
+            <MCPList data={mcps} />
           </motion.div>
 
           {!search && (

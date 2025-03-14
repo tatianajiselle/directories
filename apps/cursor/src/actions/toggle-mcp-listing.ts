@@ -5,13 +5,13 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { authActionClient } from "./safe-action";
 
-export const toggleJobListingAction = authActionClient
+export const toggleMCPListingAction = authActionClient
   .metadata({
-    actionName: "toggle-job-listing",
+    actionName: "toggle-mcp-listing",
   })
   .schema(
     z.object({
-      id: z.number(),
+      id: z.string(),
       active: z.boolean(),
     }),
   )
@@ -19,7 +19,7 @@ export const toggleJobListingAction = authActionClient
     const supabase = await createClient();
 
     const { data, error } = await supabase
-      .from("jobs")
+      .from("mcps")
       .update({
         active,
       })
@@ -32,8 +32,8 @@ export const toggleJobListingAction = authActionClient
       throw new Error(error.message);
     }
 
-    revalidatePath(`/jobs/${data.slug}`);
-    revalidatePath("/jobs");
+    revalidatePath(`/mcp/${data.slug}`);
+    revalidatePath("/mcp");
     revalidatePath("/");
 
     return data;

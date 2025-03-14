@@ -25,6 +25,18 @@ export const PRODUCTS_PRODUCTION = {
       price: 999,
     },
   },
+  mcps: {
+    featured: {
+      id: "d0024ef4-1ea1-454f-a36e-b79abca97180",
+      name: "Featured MCP Listing",
+      price: 299,
+    },
+    premium: {
+      id: "122a4b4b-0da8-4a4d-8af8-062b0c440ab4",
+      name: "Premium MCP Listing",
+      price: 499,
+    },
+  },
 };
 
 export const PRODUCTS_SANDBOX = {
@@ -43,6 +55,18 @@ export const PRODUCTS_SANDBOX = {
       id: "5de476d6-da90-41f7-9022-ec22ff7e1feb",
       name: "Premium Job Listing",
       price: 999,
+    },
+  },
+  mcps: {
+    featured: {
+      id: "7580b2bc-6385-4f3b-a53e-99d20f792b00",
+      name: "Featured MCP Listing",
+      price: 299,
+    },
+    premium: {
+      id: "f4b744a1-94d0-47bc-abd7-405384df664e",
+      name: "Premium MCP Listing",
+      price: 499,
     },
   },
 };

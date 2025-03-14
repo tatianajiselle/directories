@@ -29,6 +29,9 @@ const nextConfig = {
       {
         hostname: "knhgkaawjfqqwmsgmxns.supabase.co",
       },
+      {
+        hostname: "console.settlemint.com",
+      },
     ],
   },
 };

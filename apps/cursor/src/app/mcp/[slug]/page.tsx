@@ -1,17 +1,15 @@
 import { HowTo } from "@/components/how-to";
-import mcpData from "@directories/data/mcp";
+import { MCPsEditButton } from "@/components/mcps/mcps-edit-button";
+import { getMCPBySlug, getMCPs } from "@/data/queries";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import slugify from "slugify";
 
 export async function generateMetadata({
   params,
 }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const mcp = mcpData.find(
-    (item) => slugify(item.name, { lower: true }) === slug,
-  );
+  const { data: mcp } = await getMCPBySlug(slug);
 
   if (!mcp) {
     return {
@@ -26,8 +24,10 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return mcpData.map((mcp) => ({
-    slug: slugify(mcp.name, { lower: true }),
+  const { data: mcps } = await getMCPs();
+
+  return mcps?.map((mcp) => ({
+    slug: mcp.slug,
   }));
 }
 
@@ -37,9 +37,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const mcp = mcpData.find(
-    (item) => slugify(item.name, { lower: true }) === slug,
-  );
+  const { data: mcp } = await getMCPBySlug(slug);
 
   if (!mcp) {
     notFound();
@@ -57,12 +55,15 @@ export default async function Page({
               height={48}
             />
           )}
-          <h1 className="text-2xl">{mcp.name}</h1>
+          <div className="flex items-center gap-2 justify-between w-full">
+            <h1 className="text-2xl">{mcp.name}</h1>
+            <MCPsEditButton ownerId={mcp.owner_id} slug={mcp.slug} />
+          </div>
         </div>
         <p className="text-[#878787] mb-4">{mcp.description}</p>
 
         <Link
-          href={mcp.url}
+          href={mcp.link}
           className="text-sm text-[#878787] flex items-center gap-1"
           target="_blank"
         >

@@ -107,7 +107,6 @@ export async function getJobs() {
     .from("jobs")
     .select("*, company:companies(*)")
     .limit(1000) // TODO: Pagination
-    .order("order", { ascending: false })
     .order("created_at", { ascending: false })
     .eq("active", true);
 
@@ -132,6 +131,52 @@ export async function getJobById(id: string) {
     .from("jobs")
     .select("*, company:companies(*)")
     .eq("id", id)
+    .single();
+
+  return { data, error };
+}
+
+export async function getFeaturedMCPs({
+  onlyPremium,
+}: {
+  onlyPremium?: boolean;
+} = {}) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("mcps")
+    .select("*")
+    .limit(100)
+    .order("created_at", { ascending: false })
+    .order("order", { ascending: false })
+    .order("created_at", { ascending: false })
+    .eq("active", true)
+    .or(onlyPremium ? "plan.eq.premium" : "plan.eq.featured,plan.eq.premium");
+
+  return {
+    // Shuffle the data
+    data: data?.sort(() => Math.random() - 0.5),
+    error,
+  };
+}
+
+export async function getMCPs() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("mcps")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .eq("active", true)
+    .limit(1000); // TODO: Pagination
+
+  return { data, error };
+}
+
+export async function getMCPBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("mcps")
+    .select("*")
+    .eq("slug", slug)
     .single();
 
   return { data, error };

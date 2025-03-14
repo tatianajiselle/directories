@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -39,7 +40,16 @@ export function JobsFeatured({
       className="w-full relative"
     >
       {!hidePagination && (
-        <div className="absolute -top-10 right-0 flex gap-2">
+        <div className="absolute -top-16 right-0 gap-2 hidden md:flex">
+          <Link href="/jobs/new">
+            <Button
+              variant="outline"
+              className="rounded-full h-8 flex items-center gap-2 border-border"
+            >
+              Add job listing
+              <Plus className="size-4" />
+            </Button>
+          </Link>
           <CarouselPrevious />
           <CarouselNext />
         </div>
