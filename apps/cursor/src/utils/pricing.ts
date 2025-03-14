@@ -23,7 +23,7 @@ export type MCPPlan = "standard" | "featured" | "premium";
 export const MCP_PRICES = {
   standard: 0,
   featured: 299,
-  premium: 999,
+  premium: 499,
 } as const;
 
 export function getMCPPlanPrice(plan: MCPPlan): number {

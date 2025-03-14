@@ -1,11 +1,10 @@
 "use server";
 
+import { createMCPListingCheckoutSession } from "@/lib/polar";
 import { createPostRatelimit } from "@/lib/ratelimit";
-// import { createJobListingCheckoutSession } from "@/lib/polar";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-// import { redirect } from "next/navigation";
 import { z } from "zod";
 import { authActionClient } from "./safe-action";
 
@@ -26,7 +25,7 @@ export const createMCPListingAction = authActionClient
   .action(
     async ({
       parsedInput: { name, company_id, logo, description, link, plan },
-      ctx: { userId },
+      ctx: { userId, email, name: customerName },
     }) => {
       const supabase = await createClient();
 
@@ -78,14 +77,14 @@ export const createMCPListingAction = authActionClient
         redirect(`/mcp/${mcp.slug}`);
       }
 
-      //   const session = await createJobListingCheckoutSession({
-      //     plan,
-      //     jobListingId: data.id,
-      //     companyId: company_id,
-      //     email: email ?? "",
-      //     customerName: name ?? "",
-      //   });
+      const session = await createMCPListingCheckoutSession({
+        plan,
+        mcpListingId: data.id,
+        companyId: company_id ?? "",
+        email: email ?? "",
+        customerName: customerName ?? "",
+      });
 
-      //   redirect(session.url);
+      redirect(session.url);
     },
   );

@@ -1,4 +1,8 @@
-import { activateJobListing } from "@/lib/polar";
+import {
+  activateJobListing,
+  activateMCPListing,
+  downgradeMCPListing,
+} from "@/lib/polar";
 import { Webhooks } from "@polar-sh/nextjs";
 
 export const POST = Webhooks({
@@ -17,6 +21,16 @@ export const POST = Webhooks({
           payload.data.metadata.plan as string,
         );
 
+        break;
+      }
+
+      case "subscription.active": {
+        await activateMCPListing(payload.data.metadata.mcpListingId as string);
+        break;
+      }
+
+      case "subscription.revoked": {
+        await downgradeMCPListing(payload.data.metadata.mcpListingId as string);
         break;
       }
 
