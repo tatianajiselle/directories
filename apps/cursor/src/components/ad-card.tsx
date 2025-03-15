@@ -11,7 +11,7 @@ export function AdCard({ ad }: { ad: Ad }) {
 
   useEffect(() => {
     op.track("ad_grid_viewed", {
-      ad_id: ad.title,
+      ad_id: ad.id,
       ad_url: ad.link,
       type: "ad_card",
     });
