@@ -14,7 +14,7 @@ export default async function Page() {
   const { data: featuredJobs } = await getFeaturedJobs();
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-12 md:mt-24">
+    <div className="max-w-screen-xl mx-auto px-6 py-12 md:mt-24 pb-32">
       <h1 className="text-xl mb-2">Featured Jobs</h1>
       <p className="text-sm text-[#878787] mb-8">
         Browse positions or{" "}
