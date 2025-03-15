@@ -155,26 +155,25 @@ export function getSections() {
 }
 
 export function getRuleBySlug(slug: string) {
-  return rules.find((rule) => rule.slug === slug);
+  return rules.find(
+    (rule) => rule.slug === slug || rule.slug === `official/${slug}`,
+  );
 }
 
-
 export interface Rule {
-    title: string;
-    slug: string;
-    tags: string[];
-    libs: string[];
-    content: string;
-    author?: {
-      name: string;
-      url: string | null;
-      avatar: string | null;
-    };
-  }
-  
+  title: string;
+  slug: string;
+  tags: string[];
+  libs: string[];
+  content: string;
+  author?: {
+    name: string;
+    url: string | null;
+    avatar: string | null;
+  };
+}
 
 export type Section = {
-    tag: string;
-    rules: Rule[];
-  };
-  
+  tag: string;
+  rules: Rule[];
+};

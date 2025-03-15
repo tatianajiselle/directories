@@ -50,19 +50,19 @@ export const officialRules = [
         "https://pbs.twimg.com/profile_images/1562943276142960640/8Fo_MxSb_400x400.jpg",
     },
   },
-  {
-    tags: ["Next.js", "React", "Typescript"],
-    libs: [],
-    title: "Next.js",
-    slug: "nextjs",
-    content: readMdFile("./nextjs.md"),
-    author: {
-      name: "Next.js",
-      url: "https://x.com/nextjs",
-      avatar:
-        "https://pbs.twimg.com/profile_images/1565710214019444737/if82cpbS_400x400.jpg",
-    },
-  },
+  // {
+  //   tags: ["Next.js", "React", "Typescript"],
+  //   libs: [],
+  //   title: "Next.js",
+  //   slug: "nextjs",
+  //   content: readMdFile("./nextjs.md"),
+  //   author: {
+  //     name: "Next.js",
+  //     url: "https://x.com/nextjs",
+  //     avatar:
+  //       "https://pbs.twimg.com/profile_images/1565710214019444737/if82cpbS_400x400.jpg",
+  //   },
+  // },
   {
     tags: ["Hono", "API", "Typescript"],
     libs: [],

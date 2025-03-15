@@ -10,9 +10,9 @@ import type { Rule } from "@directories/data/rules";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { CopyButton } from "./copy-button";
+import { InstallCommand } from "./install-command";
+import { SaveRuleButton } from "./save-rule-button";
 import { ShareButton } from "./share-button";
-import { SaveRuleButton } from './save-rule-button'
-
 export function RuleCard({ rule, isPage }: { rule: Rule; isPage?: boolean }) {
   return (
     <Card className="bg-background p-4 max-h-[calc(100vh-8rem)] aspect-square flex flex-col">
@@ -23,6 +23,7 @@ export function RuleCard({ rule, isPage }: { rule: Rule; isPage?: boolean }) {
         )}
       >
         <div className="group-hover:flex hidden right-4 bottom-4 absolute z-10 space-x-2">
+          <InstallCommand slug={rule.slug} />
           <ShareButton slug={rule.slug} />
           <CopyButton content={rule.content} slug={rule.slug} />
           <SaveRuleButton content={rule.content} slug={rule.slug} />
