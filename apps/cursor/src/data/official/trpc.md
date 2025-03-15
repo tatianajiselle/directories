@@ -1,4 +1,7 @@
-# tRPC Best Practices
+---
+description: Guidelines for writing Next.js apps with tRPC
+globs: "**/*.ts, **/*.tsx, **/*.js, **/*.jsx"
+---
 
 ## Overview
 
