@@ -14,7 +14,7 @@ export function AdCardSmall({ ad, small }: { ad: Ad; small?: boolean }) {
     op.track("ad_grid_viewed", {
       ad_id: ad.title,
       ad_url: ad.link,
-      type: "small",
+      type: "ad_card_small",
     });
   }, [ad]);
 
