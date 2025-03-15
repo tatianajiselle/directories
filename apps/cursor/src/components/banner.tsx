@@ -1,6 +1,5 @@
 "use client";
 
-import { useOpenPanel } from "@openpanel/nextjs";
 import { XIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,7 +8,6 @@ export function Banner() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const pathname = usePathname();
-  const op = useOpenPanel();
 
   useEffect(() => {
     setCurrentBannerIndex(Math.floor(Math.random() * 2));
@@ -214,14 +212,6 @@ export function Banner() {
     : "";
 
   const currentBanner = banners[currentBannerIndex];
-
-  useEffect(() => {
-    op.track("ad_viewed", {
-      ad_id: currentBanner.title,
-      ad_url: currentBanner.href,
-      type: "banner",
-    });
-  }, [currentBanner]);
 
   if (!isVisible) return null;
 

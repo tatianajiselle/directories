@@ -10,10 +10,10 @@ export function AdCard({ ad }: { ad: Ad }) {
   const op = useOpenPanel();
 
   useEffect(() => {
-    op.track("ad_viewed", {
+    op.track("ad_grid_viewed", {
       ad_id: ad.title,
       ad_url: ad.link,
-      type: "small",
+      type: "ad_card",
     });
   }, [ad]);
 
