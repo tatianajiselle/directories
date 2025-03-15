@@ -17,7 +17,7 @@ export default async function Page() {
   const { data: mcps } = await getMCPs();
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-12 mt-24">
+    <div className="max-w-screen-xl mx-auto px-6 py-12 md:mt-24">
       <h1 className="text-xl mb-2">Featured MCPs</h1>
       <p className="text-sm text-[#878787] mb-8">
         Browse MCPs or{" "}
