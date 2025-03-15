@@ -11,7 +11,7 @@ export function AdCardSmall({ ad, small }: { ad: Ad; small?: boolean }) {
   const op = useOpenPanel();
 
   useEffect(() => {
-    op.track("ad_viewed", {
+    op.track("ad_grid_viewed", {
       ad_id: ad.title,
       ad_url: ad.link,
       type: "small",
