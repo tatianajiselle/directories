@@ -28,7 +28,7 @@ export default function Advertise() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                200,000 unique visitors monthly
+                250,000 unique visitors monthly
               </a>{" "}
               - and we're growing steadily. Our audience consists of developers,
               engineering leaders, and technical decision-makers who are

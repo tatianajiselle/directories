@@ -19,7 +19,7 @@ export default async function Page() {
       <p className="text-sm text-[#878787] mb-8">
         Browse positions or{" "}
         <Link href="/jobs/new" className="border-b border-border border-dashed">
-          post a job to reach 220,000+ monthly active developers
+          post a job to reach 250,000+ monthly active developers
         </Link>
         .
       </p>
