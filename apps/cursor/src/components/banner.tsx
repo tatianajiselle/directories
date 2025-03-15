@@ -1,5 +1,6 @@
 "use client";
 
+import { useOpenPanel } from "@openpanel/nextjs";
 import { XIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ export function Banner() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const pathname = usePathname();
+  const op = useOpenPanel();
 
   useEffect(() => {
     setCurrentBannerIndex(Math.floor(Math.random() * 2));
@@ -227,7 +229,18 @@ export function Banner() {
   }
 
   return (
-    <a href={currentBanner.href} target="_blank" rel="noreferrer">
+    <a
+      href={currentBanner.href}
+      target="_blank"
+      rel="noreferrer"
+      onClick={() => {
+        op.track("banner_clicked", {
+          banner_id: currentBanner.id,
+          banner_url: currentBanner.href,
+          type: "banner",
+        });
+      }}
+    >
       <div
         className={`fixed overflow-hidden ${slideClass} z-50 bottom-4 md:bottom-4 left-4 md:left-auto right-4 md:right-4 w-[calc(100vw-32px)] md:w-[calc(100vw-16px)] md:max-w-[350px] border border-border p-4 transition-all bg-background h-[88px] group`}
       >

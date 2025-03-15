@@ -36,6 +36,13 @@ export function AdCardSmall({ ad, small }: { ad: Ad; small?: boolean }) {
           target="_blank"
           rel="noopener noreferrer"
           className="h-full"
+          onClick={() => {
+            op.track("ad_card_clicked", {
+              ad_id: ad.id,
+              ad_url: ad.link,
+              type: "ad_card_small",
+            });
+          }}
         >
           <div className="h-full overflow-y-auto">
             <code className={cn("block pr-3", small ? "text-xs" : "text-sm")}>

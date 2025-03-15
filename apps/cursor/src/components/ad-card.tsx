@@ -22,6 +22,13 @@ export function AdCard({ ad }: { ad: Ad }) {
       <CardContent className="bg-card h-full mb-2 p-0 font-mono text-sm group relative flex-grow">
         <a
           href={ad.link}
+          onClick={() => {
+            op.track("ad_card_clicked", {
+              ad_id: ad.id,
+              ad_url: ad.link,
+              type: "ad_card",
+            });
+          }}
           target="_blank"
           rel="noopener noreferrer"
           className="h-full"
