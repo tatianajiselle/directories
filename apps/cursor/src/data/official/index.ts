@@ -41,7 +41,7 @@ export const officialRules = [
     tags: ["tRPC", "React", "Typescript"],
     libs: [],
     title: "tRPC",
-    slug: "trpc",
+    slug: "official/trpc",
     content: readMdFile("./trpc.md"),
     author: {
       name: "tRPC",

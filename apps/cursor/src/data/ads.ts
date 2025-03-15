@@ -1,4 +1,5 @@
 export interface Ad {
+  id: string;
   title: string;
   description: string;
   logoUrl: string;
@@ -8,6 +9,7 @@ export interface Ad {
 
 export const ads: Ad[] = [
   {
+    id: "novu",
     title: "Novu",
     description: "The open-source notification Inbox platform for React",
     logoUrl:
@@ -17,6 +19,7 @@ export const ads: Ad[] = [
       "https://pub-abe1cd4008f5412abb77357f87d7d7bb.r2.dev/ads-novu.png",
   },
   {
+    id: "midday",
     title: "Midday",
     description:
       "Invoicing, Time tracking, File reconciliation, Storage, Financial Overview & your own Assistant",
@@ -27,6 +30,7 @@ export const ads: Ad[] = [
     link: "https://go.midday.ai/8cX3F4o",
   },
   {
+    id: "languine",
     title: "Languine",
     description: "Localization infrastructure made for fast-paced startups.",
     logoUrl:
@@ -36,6 +40,7 @@ export const ads: Ad[] = [
     link: "https://go.midday.ai/NnI1CUO",
   },
   {
+    id: "composio",
     title: "our cto when MCP is not MCPin’!!!!",
     description:
       "just one more mcp bro. I promise bro just one more mcp to agi and it'll fix everything bro. bro. just one more.",
@@ -46,6 +51,7 @@ export const ads: Ad[] = [
     link: "https://dub.sh/yFjYSKz",
   },
   {
+    id: "taska",
     title: "Taska for GitHub & GitLab Issues",
     description:
       "Taska is a beautifully designed Mac app for quickly creating and editing issues.",
@@ -56,6 +62,7 @@ export const ads: Ad[] = [
     link: "https://dub.sh/8nBbSLT",
   },
   {
+    id: "polar",
     title: "Polar",
     description: "The fastest growing engine for SaaS & Digital Products",
     logoUrl:
@@ -65,6 +72,7 @@ export const ads: Ad[] = [
     link: "https://go.midday.ai/JYZ5WcG",
   },
   {
+    id: "convex",
     title: "Convex",
     description:
       "The database designed for AI code generation and vibe coding.",
@@ -75,6 +83,7 @@ export const ads: Ad[] = [
     link: "https://dub.sh/quKS4BD",
   },
   {
+    id: "upstash",
     title: "Upstash",
     description: "Serverless Data Platform for Developers and Agents",
     logoUrl:
@@ -84,6 +93,7 @@ export const ads: Ad[] = [
     link: "https://dub.sh/O0Fclmb",
   },
   {
+    id: "compai",
     title: "Comp AI",
     description: "Open Source - Get SOC 2, ISO 27001 & GDPR compliant",
     logoUrl:
@@ -93,6 +103,7 @@ export const ads: Ad[] = [
     link: "https://dub.sh/DwzRg5D",
   },
   {
+    id: "speakeasy",
     title: "Build APIs LLMs love",
     description:
       "The modern API toolchain — generate SDKs, docs, and agent tools from OpenAPI",

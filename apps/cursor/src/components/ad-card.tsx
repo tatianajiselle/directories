@@ -1,8 +1,22 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Ad } from "@/data/ads";
+import { useOpenPanel } from "@openpanel/nextjs";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export function AdCard({ ad }: { ad: Ad }) {
+  const op = useOpenPanel();
+
+  useEffect(() => {
+    op.track("ad_viewed", {
+      ad_id: ad.title,
+      ad_url: ad.link,
+      type: "small",
+    });
+  }, [ad]);
+
   return (
     <Card className="bg-background p-4 max-h-[calc(100vh-8rem)] aspect-square flex flex-col">
       <CardContent className="bg-card h-full mb-2 p-0 font-mono text-sm group relative flex-grow">

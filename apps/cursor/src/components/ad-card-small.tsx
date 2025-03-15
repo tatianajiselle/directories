@@ -1,9 +1,23 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Ad } from "@/data/ads";
 import { cn } from "@/lib/utils";
+import { useOpenPanel } from "@openpanel/nextjs";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export function AdCardSmall({ ad, small }: { ad: Ad; small?: boolean }) {
+  const op = useOpenPanel();
+
+  useEffect(() => {
+    op.track("ad_viewed", {
+      ad_id: ad.title,
+      ad_url: ad.link,
+      type: "small",
+    });
+  }, [ad]);
+
   return (
     <Card
       className={cn(

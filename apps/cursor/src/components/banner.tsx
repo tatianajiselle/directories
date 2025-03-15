@@ -1,5 +1,6 @@
 "use client";
 
+import { useOpenPanel } from "@openpanel/nextjs";
 import { XIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ export function Banner() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const pathname = usePathname();
+  const op = useOpenPanel();
 
   useEffect(() => {
     setCurrentBannerIndex(Math.floor(Math.random() * 2));
@@ -18,6 +20,7 @@ export function Banner() {
 
   const banners = [
     {
+      id: "midday",
       href: "https://go.midday.ai/8cX3F4o",
       logo: (
         <svg
@@ -40,6 +43,7 @@ export function Banner() {
         "An all-in-one tool for freelancers to monitor financial health, time-track, and send invoices. ↗",
     },
     {
+      id: "languine",
       href: "https://go.midday.ai/NnI1CUO",
       logo: (
         <svg
@@ -134,6 +138,7 @@ export function Banner() {
         "Translate your application with AI. Fast, accurate, and easy to integrate. ↗",
     },
     {
+      id: "compai",
       href: "https://dub.sh/DwzRg5D",
       logo: (
         <img
@@ -202,8 +207,6 @@ export function Banner() {
     }, 300);
   };
 
-  if (!isVisible) return null;
-
   const slideClass = isAnimating
     ? animateDirection === "down"
       ? "animate-out slide-out-to-bottom duration-300"
@@ -212,6 +215,16 @@ export function Banner() {
 
   const currentBanner = banners[currentBannerIndex];
 
+  useEffect(() => {
+    op.track("ad_viewed", {
+      ad_id: currentBanner.title,
+      ad_url: currentBanner.href,
+      type: "banner",
+    });
+  }, [currentBanner]);
+
+  if (!isVisible) return null;
+
   // Hide banner on /generate page
   if (
     pathname === "/generate" ||
@@ -219,8 +232,9 @@ export function Banner() {
     pathname.includes("/board") ||
     pathname.endsWith("/new") ||
     pathname.endsWith("/edit")
-  )
+  ) {
     return null;
+  }
 
   return (
     <a href={currentBanner.href} target="_blank" rel="noreferrer">
