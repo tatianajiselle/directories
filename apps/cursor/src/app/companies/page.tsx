@@ -25,7 +25,7 @@ export default async function Page() {
         </div>
 
         <Suspense fallback={null}>
-          <AddCompanyButton />
+          <AddCompanyButton redirect={true} />
         </Suspense>
       </div>
 
