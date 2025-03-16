@@ -78,6 +78,19 @@ export async function getUserCompanies(userId: string) {
   return { data, error };
 }
 
+export async function getCompanies() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("companies")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  return {
+    data,
+    error,
+  };
+}
+
 export async function getFeaturedJobs({
   onlyPremium,
 }: {

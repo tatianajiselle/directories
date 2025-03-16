@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-type Company = {
+export type Company = {
   id: string;
   location: string;
   name: string;
@@ -17,10 +17,11 @@ export function CompanyCard({ company }: { company: Company }) {
         <CardHeader className="flex flex-row items-center gap-4 p-0">
           <Avatar className="size-10 border border-border rounded-none">
             <AvatarImage src={company.image} alt={company.name} />
-            <AvatarFallback className="text-sm font-mono">
+            <AvatarFallback className="text-sm font-mono rounded-none bg-transparent">
               {company.name.charAt(0)}
             </AvatarFallback>
           </Avatar>
+
           <div className="flex flex-col">
             <CardTitle className="text-sm font-normal mt-0">
               {company.name}
