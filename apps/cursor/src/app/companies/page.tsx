@@ -1,7 +1,7 @@
+import { AddCompanyButton } from "@/components/company/add-company-button";
 import { CompanyList } from "@/components/company/company-list";
 import { getCompanies } from "@/data/queries";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -16,17 +16,16 @@ export default async function Page() {
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 py-12 md:mt-24 pb-32">
-      <h1 className="text-xl mb-2">Browse Companies</h1>
-      <p className="text-sm text-[#878787] mb-8">
-        Browse companies or{" "}
-        <Link
-          href="/companies/new"
-          className="border-b border-border border-dashed"
-        >
-          add your company to the directory
-        </Link>
-        .
-      </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-xl mb-2">Browse Companies</h1>
+          <p className="text-sm text-[#878787] mb-8">
+            Browse companies or add your company to the directory .
+          </p>
+        </div>
+
+        <AddCompanyButton />
+      </div>
 
       <Suspense fallback={null}>
         <CompanyList data={companies} />
