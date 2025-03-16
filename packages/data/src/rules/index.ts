@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import { ALRules } from "./al";
 import { androidRules } from "./android";
 import { angularRules } from "./angular";
@@ -150,8 +151,13 @@ export function getSections() {
     .map((tag) => ({
       tag,
       rules: rules.filter((rule) => rule.tags.includes(tag)),
+      slug: slugify(tag, { lower: true }),
     }))
     .sort((a, b) => b.rules.length - a.rules.length);
+}
+
+export function getSectionBySlug(slug: string) {
+  return getSections().find((section) => section.slug === slug);
 }
 
 export function getRuleBySlug(slug: string) {
