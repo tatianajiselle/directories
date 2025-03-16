@@ -24,7 +24,9 @@ export default async function Page() {
           </p>
         </div>
 
-        <AddCompanyButton />
+        <Suspense fallback={null}>
+          <AddCompanyButton />
+        </Suspense>
       </div>
 
       <Suspense fallback={null}>
