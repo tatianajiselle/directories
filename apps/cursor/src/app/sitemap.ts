@@ -1,4 +1,4 @@
-import type { MCP } from "@directories/data/mcp";
+import { getCompanies, getMCPs } from "@/data/queries";
 import { getSections } from "@directories/data/rules";
 import type { MetadataRoute } from "next";
 
@@ -62,15 +62,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     });
   }
+
   // Add routes for each MCP integration
-  const mcpRoutes = (await import("@directories/data/mcp")).default;
-  for (const mcp of mcpRoutes) {
-    routes.push({
-      url: `${BASE_URL}/mcp/${mcp.name.toLowerCase()}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    });
+  const { data: mcpData } = await getMCPs();
+
+  if (mcpData) {
+    for (const mcp of mcpData) {
+      routes.push({
+        url: `${BASE_URL}/mcp/${mcp.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.6,
+      });
+    }
+  }
+
+  // Add routes for each company
+  const { data: companyData } = await getCompanies();
+
+  if (companyData) {
+    for (const company of companyData) {
+      routes.push({
+        url: `${BASE_URL}/companies/${company.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.5,
+      });
+    }
   }
 
   return routes;
