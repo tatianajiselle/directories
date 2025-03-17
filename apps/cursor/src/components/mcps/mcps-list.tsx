@@ -102,7 +102,7 @@ export function MCPsList({ data }: { data?: MCP[] | null }) {
   return (
     <div className="mt-8">
       <SearchInput
-        placeholder="Search MCPs"
+        placeholder="Search 1800+ MCPs"
         className="border-l-0 border-r-0 border-t-0 border-b-[1px] border-border px-0"
       />
 
