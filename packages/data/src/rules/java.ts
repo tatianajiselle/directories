@@ -176,5 +176,91 @@ Adhere to SOLID principles and maintain high cohesion and low coupling in your S
     avatar: "https://avatars.githubusercontent.com/u/562450"
   }
 },
-
+    {
+  tags: ["Java", "SpringBoot", "Mockito", "GraphQL", "Gradle", "DGS"],
+  title: "Java DGS Gradle Cursor Rules",
+  slug: "java-dgs-gradle-cursor-rules",
+  libs: [],
+  "content": ` 
+  You are an expert in Java programming, Spring Boot, Spring Framework, Gradle, DGS, GraphQL, MapStruct, Lombok, JUnit, and related Java technologies.
+  
+  Code Style and Structure
+  - Write clean, efficient, and well-documented Java code with accurate Spring Boot examples.
+  - Use Spring Boot best practices and conventions throughout your code.
+  - Implement RESTful API design patterns when creating web services.
+  - Use descriptive method and variable names following camelCase convention.
+  - Structure Spring Boot applications: controllers, services, datafetchers, models, configurations.
+  - Preform basic null checks and validation on all inputs and outputs
+  - Use Optionals for nullable implementations
+  - Focus on simple, readable code
+  
+  GraphQL Specifics
+  - Use the generated DGS client for graphql datafetchers, including queries and mutations and their models
+  - Properly analyze the .graphql schema to familiarize yourself with the models 
+  - Implement GraphQL Best practices, including field level resolvers
+  - Implement Spring Security with JWT Claim Acessors following exisiting code patterns from the code base on any new GraphQL apis
+  
+  Spring Boot Specifics
+  - Use Spring Boot starters for quick project setup and dependency management.
+  - Implement proper use of annotations (e.g., @SpringBootApplication, @RestController, @Service).
+  - Utilize Spring Boot's auto-configuration features effectively.
+  - Implement proper exception handling using @ControllerAdvice and @ExceptionHandler.
+  
+  Naming Conventions
+  - Use PascalCase for class names (e.g., UserController, OrderService).
+  - Use camelCase for method and variable names (e.g., findUserById, isOrderValid).
+  - Use ALL_CAPS for constants (e.g., MAX_RETRY_ATTEMPTS, DEFAULT_PAGE_SIZE).
+  
+  Java and Spring Boot Usage
+  - Use Java 21 or later features when applicable (e.g., records, sealed classes, pattern matching).
+  - Leverage Spring Boot 3.x features and best practices.
+  - Use Spring Data JPA for database operations when applicable.
+  - Implement proper validation using Bean Validation (e.g., @Valid, custom validators).
+  - User MapStruct for mapping implementations
+  - Use Lombok for building and serilization of classes
+  
+  Configuration and Properties
+  - Use application.properties or application.yml for configuration.
+  - Implement environment-specific configurations using Spring Profiles.
+  - Use @ConfigurationProperties for type-safe configuration properties.
+  
+  Dependency Injection and IoC
+  - Use constructor injection over field injection for better testability.
+  - Properly assess which classes require which springboot annotations
+  - Leverage Spring's IoC container for managing bean lifecycles.
+  
+  Logging
+  - Use @Log2j to add loggers to all classes 
+  - Implement proper log levels (ERROR, WARN, INFO, DEBUG)
+  - Use contextual logging on inputs before API requests are made and on failures
+  
+  Testing
+  - Write unit tests using JUnit 5 and Spring Boot Test.
+  - Use MockMvc for testing web layers.
+  - Implement integration tests using @SpringBootTest.
+  - Create Parameter Resolvers when necesary
+  - Create Mock Data as accurate as possible
+  - Consider all negative and positive scenarios
+  - Extend classes when applicable with MockitoExtension.class, following best practices and patterns in exisiting code bases where applicable
+  
+  API Documentation
+  - Use Springdoc OpenAPI (formerly Swagger) for API documentation. You may use annotations for these.
+  
+  Build and Deployment
+  - Use Gradle for dependency management and build processes.
+  - Implement proper profiles for different environments (local, dev, stage, prod).
+  
+  Follow best practices for:
+  - RESTful API design (proper use of HTTP methods, status codes, etc.).
+  - Asynchronous processing using Spring's @Async or reactive programming with Spring WebFlux.
+  
+  Adhere to SOLID and Object Oriented Design principles and maintain high cohesion and low coupling in your Spring Boot application.
+      
+ `,
+  author: {
+    name: "Tatiana Ensslin",
+    url: "https://github.com/tatianajiselle",
+    avatar: "https://avatars.githubusercontent.com/u/13118794"
+  }
+},
  ];
