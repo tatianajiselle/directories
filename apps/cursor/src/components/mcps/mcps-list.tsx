@@ -52,7 +52,10 @@ export function MCPsList({ data }: { data?: MCP[] | null }) {
     setLoading(true);
     try {
       const nextPage = page + 1;
-      const { data: newData, error } = await getMCPsClient({ page: nextPage });
+      const { data: newData, error } = await getMCPsClient({
+        page: nextPage,
+        limit: 36 * 2,
+      });
 
       if (error) {
         console.error("Error fetching more MCPs:", error);
